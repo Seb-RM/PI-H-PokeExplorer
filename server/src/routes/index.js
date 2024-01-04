@@ -4,6 +4,6 @@ import PokemonRouter from "./pokemonsRoutes.js";
 
 const router = express.Router();
 
-router.use("/pokemons", )
+router.use("/pokemons", PokemonRouter )
 
 export default router;

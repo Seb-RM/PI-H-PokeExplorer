@@ -1,5 +1,5 @@
-import Type from "./typeModel";
-import Pokemon from "./pokemonModel";
+import Type from "./typeModel.js";
+import Pokemon from "./pokemonModel.js";
 
 Pokemon.belongsToMany( Type, {
     through: "PokemonTypes",
