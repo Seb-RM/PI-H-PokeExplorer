@@ -1,4 +1,5 @@
 import { Type, Pokemon } from "../models/index.js";
+import getPokemonDetails from "../utils/pokemonsUtils.js"
 import axios from "axios";
 import { Op } from "sequelize";
 
@@ -27,13 +28,17 @@ const getPokemons = async (req, res, next) => {
 
     const apiResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
 
-    console.log(apiResponse.data.results)
-
-    const PokemonsFromAPI = apiResponse.data.results.map((PokemonFromAPI) => ({
-        id: Number(PokemonFromAPI.url.split("/").slice(-2, -1)[0]),
-        nombre: PokemonFromAPI.name,
-    }));
-
+    const PokemonsFromAPI = await Promise.all(
+        apiResponse.data.results.map(async (pokemonFromAPI) => {
+            const details = await getPokemonDetails(pokemonFromAPI.url);
+            return {
+            id: Number(pokemonFromAPI.url.split("/").slice(-2, -1)[0]),
+            nombre: pokemonFromAPI.name,
+            ...details,
+            };
+        })
+    );
+    
     // const allPokemons = [...filteredPokemons, ...PokemonsFromAPI];
 
     // if (allPokemons.length === 0) {
