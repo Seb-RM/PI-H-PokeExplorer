@@ -1,4 +1,25 @@
 import axios from "axios";
+
+const getPokemonsFromApi = async (url) => {
+    try {
+            let apiPokemons = [];
+            
+            while ( apiPokemons.length < 155) {
+            const response = await axios.get(url);
+            const results = response.data.results;
+            apiPokemons = [...apiPokemons, ...results];
+
+            url = response.data.next;
+            }
+            
+            return apiPokemons;
+
+    } catch (error) {
+        console.error("Error al obtener los Pokemons de la Api:", error.message);
+        throw error;
+    }
+}; 
+
 const getPokemonDetails = async (url) => {
     try {
         const response = await axios.get(url);
@@ -20,4 +41,7 @@ const getPokemonDetails = async (url) => {
     }
 };
 
-export default getPokemonDetails;
+export  {
+    getPokemonsFromApi,
+    getPokemonDetails
+    };
