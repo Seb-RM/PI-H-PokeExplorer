@@ -5,13 +5,13 @@ const getPokemonsFromApi = async (url) => {
             let apiPokemons = [];
             
             while ( apiPokemons.length < 155) {
-            const response = await axios.get(url);
-            const results = response.data.results;
-            apiPokemons = [...apiPokemons, ...results];
+                const response = await axios.get(url);
+                const results = response.data.results;
+                apiPokemons = [...apiPokemons, ...results];
 
-            url = response.data.next;
+                url = response.data.next;
             }
-            
+
             return apiPokemons;
 
     } catch (error) {
