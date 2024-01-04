@@ -9,6 +9,13 @@ const Type = sequelize.define(
         autoIncrement: true,
         primaryKey: true,
         },
+        nombre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1, 30],
+        },
+        },
     },
     { timestamps: false }
 );
