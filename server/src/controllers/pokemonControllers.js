@@ -22,13 +22,13 @@ const getPokemons = async (req, res, next) => {
             ],
         }
         );
-        console.log(existingPokemons)
+        
         const filteredPokemons = existingPokemons.map((Pokemon) => {
             return {
                 id: Pokemon.id,
                 nombre: Pokemon.nombre,
                 imagen: Pokemon.imagen,
-                vida: Pokemon.imagen,
+                vida: Pokemon.vida,
                 ataque: Pokemon.ataque,
                 defensa: Pokemon.defensa,
                 velocidad: Pokemon.velocidad,
@@ -38,20 +38,20 @@ const getPokemons = async (req, res, next) => {
             };
         });
 
-        // const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
+        const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
 
-        // const pokemonsFromAPI = await Promise.all(
-        //         apiResponse.map(async (filteredPokemon) => {
-        //         const details = await getPokemonDetails(filteredPokemon.url);
-        //         return {
-        //             id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
-        //             nombre: filteredPokemon.name,
-        //             ...details,
-        //         };
-        //     })
-        // );
+        const pokemonsFromAPI = await Promise.all(
+                apiResponse.map(async (filteredPokemon) => {
+                const details = await getPokemonDetails(filteredPokemon.url);
+                return {
+                    id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
+                    nombre: filteredPokemon.name,
+                    ...details,
+                };
+            })
+        );
     
-        const allPokemons = [...filteredPokemons, ];
+        const allPokemons = [...filteredPokemons, ...pokemonsFromAPI ];
 
         if (allPokemons.length === 0) {
             return res.json([]);
