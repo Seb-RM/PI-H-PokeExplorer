@@ -4,8 +4,6 @@ import {
         getPokemonsByName,
         createPokemon
 } from "../controllers/pokemonControllers.js";
-import Pokemon from "../models/pokemonModel.js";
-
 
 const getPokemonsHandler = async (req, res, next) => {
         try {
