@@ -130,7 +130,7 @@ const getPokemonsById = async (id) => {
             }
             
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 
@@ -139,12 +139,34 @@ const getPokemonsByName = async(name) =>{
     try {
         
         const existingPokemons = await Pokemon.findAll({
-        where: {
-            nombre: {
-            [Op.iLike]: `%${name}%`,
+            where: {
+                nombre: {
+                    [Op.iLike]: `%${name}%`,
+                    },
             },
-        },
-        include: [Type],
+            include: [
+                {
+                model: Type,
+                    through: {
+                        attributes: [],
+                    }
+                }
+            ]
+        });
+
+        const filteredPokemonsDb = existingPokemons.map((Pokemon) => {
+            return {
+                id: Pokemon.id,
+                nombre: Pokemon.nombre,
+                imagen: Pokemon.imagen,
+                vida: Pokemon.vida,
+                ataque: Pokemon.ataque,
+                defensa: Pokemon.defensa,
+                velocidad: Pokemon.velocidad,
+                altura: Pokemon.altura,
+                peso: Pokemon.peso,
+                tipos: Pokemon.Types.map((type) => type.nombre),
+            };
         });
 
         const pokemonsFromAPI = await getPokemonsFromApiNameControl(`https://pokeapi.co/api/v2/pokemon`);
@@ -165,7 +187,7 @@ const getPokemonsByName = async(name) =>{
         );
 
         const combinedResults = [
-            ...existingPokemons,
+            ...filteredPokemonsDb,
             ...processedPokemons,
         ];
 
