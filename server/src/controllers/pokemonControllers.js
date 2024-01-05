@@ -83,7 +83,7 @@ const getPokemonsById = async (id) => {
                         },
                     ],
                 });
-                console.log(existingPokemon)
+                
                 if (existingPokemon) {
                     const filteredPokemon = {
                         id: existingPokemon.id,
@@ -97,11 +97,11 @@ const getPokemonsById = async (id) => {
                         peso: existingPokemon.peso,
                         tipos: existingPokemon.Types.map((type) => type.nombre)
                     };
-                    console.log(filteredPokemon);
+                    
                     return filteredPokemon;
 
                 } else {
-                    
+
                     throw new Error("El Pokemon no fue  encontrado en la base de datos.");
                 }
             } else {
