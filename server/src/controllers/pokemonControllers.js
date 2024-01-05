@@ -1,5 +1,9 @@
 import { Type, Pokemon } from "../models/index.js";
-import { getPokemonsFromApi, getPokemonDetails} from "../utils/pokemonsUtils.js";
+import {
+    getPokemonsFromApi,
+    getPokemonDetails,
+    getPokemonsFromApiNameControl,
+} from "../utils/pokemonsUtils.js";
 import axios from "axios";
 import { Op } from "sequelize";
 
@@ -18,35 +22,35 @@ const getPokemons = async (req, res, next) => {
         });
 
         const filteredPokemons = existingPokemons.map((Pokemon) => {
-        return {
-            id: Pokemon.id,
-            nombre: Pokemon.nombre,
-            imagen: Pokemon.image,
-            tipos: Pokemon.Type.map((type) => type.nombre),
-        };
-    });
-
-    const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
-
-    const PokemonsFromAPI = await Promise.all(
-        apiResponse.map(async (pokemonFromAPI) => {
-            const details = await getPokemonDetails(pokemonFromAPI.url);
             return {
-            id: Number(pokemonFromAPI.url.split("/").slice(-2, -1)[0]),
-            nombre: pokemonFromAPI.name,
-            ...details,
+                id: Pokemon.id,
+                nombre: Pokemon.nombre,
+                imagen: Pokemon.image,
+                tipos: Pokemon.Type.map((type) => type.nombre),
             };
-        })
-    );
+        });
+
+        const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
+
+        const PokemonsFromAPI = await Promise.all(
+            apiResponse.map(async (filteredPokemon) => {
+                const details = await getPokemonDetails(filteredPokemon.url);
+                return {
+                id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
+                nombre: filteredPokemon.name,
+                ...details,
+                };
+            })
+        );
     
-    const allPokemons = [...filteredPokemons, ...PokemonsFromAPI];
+        const allPokemons = [...filteredPokemons, ...PokemonsFromAPI];
 
-    if (allPokemons.length === 0) {
+        if (allPokemons.length === 0) {
 
-        return res.json([]);
-    }
+            return res.json([]);
+        }
 
-    res.json(allPokemons);
+        res.json(allPokemons);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -92,20 +96,20 @@ const getPokemonsById = async (idpokemon) => {
                 `https://pokeapi.co/api/v2/pokemon/${idpokemon}`
             );
 
-            const pokemonFromAPI = apiResponse.data;
+            const filteredPokemon = apiResponse.data;
                 
             const processedPokemon = {
-                id: pokemonFromAPI.id,
-                nombre: pokemonFromAPI.name,
+                id: filteredPokemon.id,
+                nombre: filteredPokemon.name,
                 imagen:
-                    pokemonFromAPI.sprites.other["official-artwork"].front_default,
-                vida: pokemonFromAPI.stats[0]["base_stat"],
-                ataque: pokemonFromAPI.stats[1]["base_stat"],
-                defensa: pokemonFromAPI.stats[2]["base_stat"],
-                velocidad: pokemonFromAPI.stats[5]["base_stat"],
-                altura: pokemonFromAPI.height,
-                peso: pokemonFromAPI.weight,
-                tipos: pokemonFromAPI.types.map((tipo) => tipo.type.name),
+                    filteredPokemon.sprites.other["official-artwork"].front_default,
+                vida: filteredPokemon.stats[0]["base_stat"],
+                ataque: filteredPokemon.stats[1]["base_stat"],
+                defensa: filteredPokemon.stats[2]["base_stat"],
+                velocidad: filteredPokemon.stats[5]["base_stat"],
+                altura: filteredPokemon.height,
+                peso: filteredPokemon.weight,
+                tipos: filteredPokemon.types.map((tipo) => tipo.type.name),
             };
 
             return processedPokemon;
@@ -116,7 +120,50 @@ const getPokemonsById = async (idpokemon) => {
     }
 };
 
+const getPokemonsByName = async(name) =>{
+
+    try {
+        
+        const existingPokemons = await Pokemon.findAll({
+        where: {
+            nombre: {
+            [Op.iLike]: `%${name}%`,
+            },
+        },
+        include: [Type],
+        });
+
+        const pokemonsFromAPI = await getPokemonsFromApiNameControl(`https://pokeapi.co/api/v2/pokemon`);
+    
+        const filteredPokemons = pokemonsFromAPI.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(name.toLowerCase())
+        );
+
+        const processedPokemons = await Promise.all(
+            filteredPokemons.map(async (filteredPokemon) => {
+                const details = await getPokemonDetails(filteredPokemon.url);
+                return {
+                id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
+                nombre: filteredPokemon.name,
+                ...details,
+                };
+            })
+        );
+
+        const combinedResults = [
+            ...existingPokemons,
+            ...processedPokemons,
+        ];
+
+        return combinedResults;
+
+    } catch (error) {
+        throw error;
+    }
+}; 
+
 export { 
     getPokemons, 
-    getPokemonsById 
+    getPokemonsById,
+    getPokemonsByName
 };

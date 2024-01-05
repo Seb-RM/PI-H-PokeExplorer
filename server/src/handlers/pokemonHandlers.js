@@ -1,4 +1,8 @@
-import { getPokemons, getPokemonsById } from "../controllers/pokemonControllers.js";
+import {
+        getPokemons,
+        getPokemonsById,
+        getPokemonsByName
+} from "../controllers/pokemonControllers.js";
 
 
 const getPokemonsHandler = async (req, res, next) => {
@@ -22,7 +26,22 @@ const getPokemonByIdHandler = async (req, res, next) => {
         }
 };
 
-export { 
-        getPokemonsHandler, 
-        getPokemonByIdHandler 
+const getPokemonsByNameHandler = async (req, res, next) => {
+        try {
+                const { name } = req.query;
+                
+                const result = await getPokemonsByName(name);
+
+                // if (result.length === 0) {
+                //         res.json({
+                //         message: "No se encontraron juegos con ese nombre.",
+                //         });
+                // } else {
+                        res.json(result);
+                
+        } catch (error) {
+                next(error);
+        }
 };
+
+export { getPokemonsHandler, getPokemonByIdHandler, getPokemonsByNameHandler };

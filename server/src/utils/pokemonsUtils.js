@@ -41,7 +41,25 @@ const getPokemonDetails = async (url) => {
     }
 };
 
-export  {
-    getPokemonsFromApi,
-    getPokemonDetails
-    };
+const getPokemonsFromApiNameControl = async (url) => {
+    
+    try {
+        let apiPokemons = [];
+
+        while (url) {
+            const response = await axios.get(url);
+            const results = response.data.results;
+            apiPokemons = [...apiPokemons, ...results];
+
+            url = response.data.next;
+        }
+    
+        return apiPokemons;
+
+    } catch (error) {
+        console.error("Error al obtener los Pokemons de la Api:", error.message);
+        throw error;
+    }
+};
+
+export { getPokemonsFromApi, getPokemonDetails, getPokemonsFromApiNameControl };
