@@ -24,6 +24,13 @@ const Pokemon = sequelize.define(
             isUrl: true,
         },
         },
+        vida: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            isInt: true,
+        },
+        },
         ataque: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -65,7 +72,7 @@ const Pokemon = sequelize.define(
         hooks: {
         beforeValidate: (Pokemon, options) => {
             if (Pokemon.nombre) {
-                Pokemon.nombre = formatearNombre(Pokemon.nombre);
+            Pokemon.nombre = formatearNombre(Pokemon.nombre);
             }
         },
         },
@@ -73,7 +80,7 @@ const Pokemon = sequelize.define(
 );
 
 const formatearNombre = (nombre) => {
-    return nombre.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+    return nombre.toLowerCase();
 };
 
 

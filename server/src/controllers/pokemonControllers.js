@@ -10,7 +10,8 @@ import { Op } from "sequelize";
 const getPokemons = async (req, res, next) => {
 
     try {
-        const existingPokemons = await Pokemon.findAll({
+        const existingPokemons = await Pokemon.findAll(
+            {
             include: [
                 {
                 model: Type,
@@ -19,31 +20,38 @@ const getPokemons = async (req, res, next) => {
                 },
                 },
             ],
-        });
-
+        }
+        );
+        console.log(existingPokemons)
         const filteredPokemons = existingPokemons.map((Pokemon) => {
             return {
                 id: Pokemon.id,
                 nombre: Pokemon.nombre,
-                imagen: Pokemon.image,
-                tipos: Pokemon.Type.map((type) => type.nombre),
+                imagen: Pokemon.imagen,
+                vida: Pokemon.imagen,
+                ataque: Pokemon.ataque,
+                defensa: Pokemon.defensa,
+                velocidad: Pokemon.velocidad,
+                altura: Pokemon.altura,
+                peso: Pokemon.peso,
+                tipos: Pokemon.Types.map((type) => type.nombre),
             };
         });
 
-        const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
+        // const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
 
-        const pokemonsFromAPI = await Promise.all(
-                apiResponse.map(async (filteredPokemon) => {
-                const details = await getPokemonDetails(filteredPokemon.url);
-                return {
-                    id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
-                    nombre: filteredPokemon.name,
-                    ...details,
-                };
-            })
-        );
+        // const pokemonsFromAPI = await Promise.all(
+        //         apiResponse.map(async (filteredPokemon) => {
+        //         const details = await getPokemonDetails(filteredPokemon.url);
+        //         return {
+        //             id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
+        //             nombre: filteredPokemon.name,
+        //             ...details,
+        //         };
+        //     })
+        // );
     
-        const allPokemons = [...filteredPokemons, ...pokemonsFromAPI];
+        const allPokemons = [...filteredPokemons, ];
 
         if (allPokemons.length === 0) {
             return res.json([]);
@@ -161,8 +169,68 @@ const getPokemonsByName = async(name) =>{
     }
 }; 
 
+const createPokemon = async ({
+    nombre,
+    imagen,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+    tipos
+    }) => {
+        try {
+            if (
+            !nombre ||
+            !imagen ||
+            !vida ||
+            !ataque ||
+            !defensa ||
+            !velocidad ||
+            !altura ||
+            !peso ||
+            !tipos
+            ) {
+                throw new Error("Todos los campos son obligatorios.");
+            }
+            
+            if (!Array.isArray(tipos) || tipos.length === 0) {
+                throw new Error("Se debe proporcionar al menos un tipo.");
+            }
+
+            const existingTypes = await Type.findAll({ where: { nombre: tipos } });
+            
+            if (existingTypes.length !== tipos.length) {
+            throw new Error("Alguno de los géneros proporcionados no existe.");
+            }
+
+            const newPokemon = await Pokemon.create({
+                nombre,
+                imagen,
+                vida,
+                ataque,
+                defensa,
+                velocidad,
+                altura,
+                peso
+            });
+
+            await newPokemon.addTypes(existingTypes);
+
+            return {
+                success: true,
+                message: "Pokemon creado correctamente",
+                pokemon: newPokemon,
+            };
+        } catch (error) {
+            throw error;
+        }
+};
+
 export { 
     getPokemons, 
     getPokemonsById,
-    getPokemonsByName
+    getPokemonsByName,
+    createPokemon
 };
