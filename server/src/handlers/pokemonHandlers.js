@@ -20,10 +20,11 @@ const getPokemonByIdHandler = async (req, res, next) => {
         try {
                 const { idpokemon } = req.params;
                 const result = await getPokemonsById(idpokemon);
+                
                 res.json(result);
 
         } catch (error) {
-        next(error);
+                next(error);
         }
 };
 

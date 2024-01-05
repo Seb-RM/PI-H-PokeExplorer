@@ -64,43 +64,50 @@ const getPokemons = async (req, res, next) => {
     }
 };
 
-const getPokemonsById = async (idpokemon) => {
+const getPokemonsById = async (id) => {
 
     try {
-            const isUUID = idpokemon.match(
+            const isUUID = id.match(
             /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/
             );
-
+                
             if (isUUID) {
 
-            const existingPokemon = await Pokemon.findByPk(idpokemon, {
-                include: [
-                    {
-                        model: Type,
-                        through: {
-                        attributes: [],
+                const existingPokemon = await Pokemon.findByPk(id, {
+                    include: [
+                        {
+                            model: Type,
+                            through: {
+                            attributes: [],
+                            },
                         },
-                    },
-                ],
-            });
+                    ],
+                });
+                console.log(existingPokemon)
+                if (existingPokemon) {
+                    const filteredPokemon = {
+                        id: existingPokemon.id,
+                        nombre: existingPokemon.nombre,
+                        imagen: existingPokemon.imagen,
+                        vida: existingPokemon.vida,
+                        ataque: existingPokemon.ataque,
+                        defensa: existingPokemon.defensa,
+                        velocidad: existingPokemon.velocidad,
+                        altura: existingPokemon.altura,
+                        peso: existingPokemon.peso,
+                        tipos: existingPokemon.Types.map((type) => type.nombre)
+                    };
+                    console.log(filteredPokemon);
+                    return filteredPokemon;
 
-            if (existingPokemon) {
-                const filteredPokemon = {
-                id: existingPokemon.id,
-                nombre: existingPokemon.name,
-                imagen: existingPokemon.image,
-                tipos: existingPokemon.Types.map((type) => type.nombre),
-                };
-
-                return res.json(filteredPokemon);
-
-            } else {
-                throw new Error("Video juego no encontrado en la base de datos.");
-            }
+                } else {
+                    
+                    throw new Error("El Pokemon no fue  encontrado en la base de datos.");
+                }
             } else {
             
             const apiResponse = await axios.get(
-                `https://pokeapi.co/api/v2/pokemon/${idpokemon}`
+                `https://pokeapi.co/api/v2/pokemon/${id}`
             );
 
             const filteredPokemon = apiResponse.data;
