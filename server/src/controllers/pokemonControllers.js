@@ -32,21 +32,20 @@ const getPokemons = async (req, res, next) => {
 
         const apiResponse = await getPokemonsFromApi(`https://pokeapi.co/api/v2/pokemon`);
 
-        const PokemonsFromAPI = await Promise.all(
-            apiResponse.map(async (filteredPokemon) => {
+        const pokemonsFromAPI = await Promise.all(
+                apiResponse.map(async (filteredPokemon) => {
                 const details = await getPokemonDetails(filteredPokemon.url);
                 return {
-                id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
-                nombre: filteredPokemon.name,
-                ...details,
+                    id: Number(filteredPokemon.url.split("/").slice(-2, -1)[0]),
+                    nombre: filteredPokemon.name,
+                    ...details,
                 };
             })
         );
     
-        const allPokemons = [...filteredPokemons, ...PokemonsFromAPI];
+        const allPokemons = [...filteredPokemons, ...pokemonsFromAPI];
 
         if (allPokemons.length === 0) {
-
             return res.json([]);
         }
 

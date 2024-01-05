@@ -32,13 +32,13 @@ const getPokemonsByNameHandler = async (req, res, next) => {
                 
                 const result = await getPokemonsByName(name);
 
-                // if (result.length === 0) {
-                //         res.json({
-                //         message: "No se encontraron juegos con ese nombre.",
-                //         });
-                // } else {
+                if (result.length === 0) {
+                        res.json({
+                        message: "No se encontraron Pokemons con ese nombre.",
+                        });
+                } else {
                         res.json(result);
-                
+                }
         } catch (error) {
                 next(error);
         }
