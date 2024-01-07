@@ -1,0 +1,22 @@
+.cardsContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 12rem);
+    grid-gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 100vh;
+    background-color: darkcyan;
+    border: 1px solid black;
+}
+
+@media (min-width: 950px) {
+    .cardsContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 18rem);
+    grid-gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: darkcyan;
+    border: 1px solid black;
+    }
+}

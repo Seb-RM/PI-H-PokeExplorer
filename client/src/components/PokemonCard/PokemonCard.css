@@ -1,0 +1,30 @@
+.cardContainer {
+    max-width: 250px;
+    min-height: 230px;
+    background-color: chocolate;
+    border: 1px solid black;
+}
+
+.cardImage {
+    max-width: 90%;
+    max-height: auto;
+    display: block;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.cardContainer a{
+    text-decoration: none;
+    text-align: center;
+    cursor:pointer;
+}
+.cardTypes {
+    list-style: none;
+}
+@media (min-width: 950px) {
+    .cardContainer {
+        min-height:  290px;
+    }
+}
+
+

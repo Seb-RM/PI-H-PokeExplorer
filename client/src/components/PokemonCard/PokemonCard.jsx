@@ -5,18 +5,18 @@ import "./PokemonCard.css"
 const PokemonCard = ({ id, nombre, imagen, tipos }) => {
     return (
         <>
+            <div className="cardContainer">
             <Link to={`/detail/${id}`}>
-                <div className="cardContainer">
-                <h3>Esto es una card.</h3>
+            
                 <img src={imagen} alt="`${nombre}`" className="cardImage" />
-                <h2>{nombre}</h2>
-                <ul>
-                    {tipos.map((tipo, index) => (
+                <h3>{nombre}</h3>
+                <ul className="cardTypes">
+                {tipos.map((tipo, index) => (
                     <li key={index}>{tipo}</li>
-                    ))}
+                ))}
                 </ul>
-                </div>
             </Link>
+            </div>
         </>
     );
 };
@@ -25,11 +25,6 @@ PokemonCard.propTypes = {
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     nombre: PropTypes.string.isRequired,
     imagen: PropTypes.string.isRequired,
-    tipos: PropTypes.arrayOf(
-        PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        nombre: PropTypes.string.isRequired,
-        })
-    ).isRequired,
+    tipos: PropTypes.array.isRequired,
 };
 export default PokemonCard;
