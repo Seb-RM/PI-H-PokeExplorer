@@ -1,6 +1,7 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { fetchPokemonDetails } from "../../redux/actions/pokemonsActions.js"
+import { useEffect } from "react";
 
 const PokemonDetail = (id) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const PokemonDetail = (id) => {
     if (error) {
         return <p>Error: {error}</p>;
     }
-
+    console.log(pokemonDetails)  
     return (
         <>
             <div>
