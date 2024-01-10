@@ -48,7 +48,8 @@ export const fetchTypes = () => async (dispatch) => {
     }
 };
 
-export const createVideoGame = (pokemonData) => async (dispatch) => {
+export const createPokemon = (pokemonData) => async (dispatch) => {
+    console.log(pokemonData)
     try {
         const response = await axios.post("http://localhost:3001/pokemons",pokemonData);
         console.log(response.data)

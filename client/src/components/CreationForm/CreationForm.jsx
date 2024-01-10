@@ -1,24 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTypes } from "../../redux/actions/pokemonsActions.js";
+import { createPokemon, fetchTypes } from "../../redux/actions/pokemonsActions.js";
 import { useEffect, useState } from "react";
 import validateForm from "../../utils/validateForm.js";
-import { INITIAL_ERRORS } from "../../constants/formConstants.js";
+import { INITIAL_ERRORS, INITIAL_POKEMON_DATA } from "../../constants/formConstants.js";
 import validateTypes from "../../utils/validateTypes.js";
 
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
-
-const initialPokemonData = {
-  nombre: "",
-  imagen: "",
-  vida: "",
-  ataque: "",
-  defensa: "",
-  velocidad: "",
-  altura: "",
-  peso: "",
-  tipos: [],
-};
 
 const CreationForm = () => {
 
@@ -30,9 +18,18 @@ const CreationForm = () => {
     dispatch(fetchTypes());
   }, [dispatch]);
 
-  // const [formSubmitted, setFormSubmitted] = useState(false);
-  const [pokemonData, setPokemonData] = useState(initialPokemonData);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [pokemonData, setPokemonData] = useState(INITIAL_POKEMON_DATA);
   const [errors, setErrors] = useState(INITIAL_ERRORS);
+  const [isFormValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    const isValid = Object.values(errors).every(
+      (field) => field.tipo === "success"
+    );
+    setFormValid(isValid);
+  }, [errors]);
+
 
   const validateAndSetErrors = (name, value) => {
       let validationFunction;
@@ -82,6 +79,31 @@ const CreationForm = () => {
     validateAndSetErrors("tipos", pokemonData.tipos);
   }, [pokemonData.tipos]);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const newErrors = validateForm();
+
+    if (Object.keys(newErrors).length === 0) {
+      try {
+        dispatch(createPokemon(pokemonData));
+
+        setPokemonData(INITIAL_POKEMON_DATA);
+        setErrors(INITIAL_ERRORS);
+
+        setFormSubmitted(true);
+
+        setTimeout(() => {
+          setFormSubmitted(false);
+        }, 5000);
+      } catch (error) {
+        setErrors({ serverError: "Error al enviar el formulario" });
+      }
+    } else {
+      setErrors(newErrors);
+    }
+  };
+
   return (
     <>
       <div>
@@ -92,7 +114,7 @@ const CreationForm = () => {
             pokemon a la lista.
           </p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label>
               <h4>Nombre :</h4>
@@ -103,24 +125,6 @@ const CreationForm = () => {
               value={pokemonData.nombre}
               onChange={handleInputChange}
             />
-            {/* {errors.nombre.type === "default" && (
-              <div>
-                <img src={defaultIcon} alt="default icon" />
-                <p className="default-message">{errors.nombre.message}</p>
-              </div>
-            )}
-            {errors.nombre.type === "error" && (
-              <div>
-                <img src={errorIcon} alt="Error icon" />
-                <p className="error-message">{errors.nombre.message}</p>
-              </div>
-            )}
-            {errors.nombre.type === "success" && (
-              <div>
-                <img src={okIcon} alt="Ok icon" />
-                <p className="success-message">{errors.nombre.message}</p>
-              </div>
-            )} */}
             <ErrorMessage errors={errors.nombre} />
           </div>
           <div>
@@ -231,8 +235,10 @@ const CreationForm = () => {
               </div>
             ))}
           </div>
-          <button type="submit">Agregar Juego</button>
-          {/* {formSubmitted && <p>¡Formulario enviado exitosamente!</p>} */}
+          <button type="submit" disabled={!isFormValid}>
+            Crear Pokemon
+          </button>
+          {formSubmitted && <p>¡Formulario enviado exitosamente!</p>}
         </form>
       </div>
     </>

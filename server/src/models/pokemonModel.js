@@ -68,20 +68,6 @@ const Pokemon = sequelize.define(
         },
     },
     { timestamps: false },
-    {
-        hooks: {
-        beforeValidate: (Pokemon, options) => {
-            if (Pokemon.nombre) {
-            Pokemon.nombre = formatearNombre(Pokemon.nombre);
-            }
-        },
-        },
-    }
 );
-
-const formatearNombre = (nombre) => {
-    return nombre.toLowerCase();
-};
-
 
 export default Pokemon;
