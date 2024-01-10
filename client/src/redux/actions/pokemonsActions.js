@@ -1,5 +1,6 @@
-import axios from "axios";
 import * as actionTypes from "./action-types.js";
+
+import axios from "axios";
 
 export const fetchPokemons = () => async (dispatch) => {
     try {
@@ -23,11 +24,42 @@ export const fetchPokemonDetails = ({id}) => async (dispatch) => {
                 type: actionTypes.FETCH_POKEMONDETAILS_SUCCESS,
                 payload: response.data,
             });
-
     } catch (error) {
         dispatch({
             type: actionTypes.FETCH_POKEMONDETAILS_FAILURE,
             payload: error.message,
+        });
+    }
+};
+
+export const fetchTypes = () => async (dispatch) => {
+    try {
+        const response = await axios.get("http://localhost:3001/types");
+        
+        dispatch({
+            type: actionTypes.FETCH_TYPES_SUCCESS,
+            payload: response.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.FETCH_TYPES_FAILURE,
+            payload: error.message,
+        });
+    }
+};
+
+export const createVideoGame = (pokemonData) => async (dispatch) => {
+    try {
+        const response = await axios.post("http://localhost:3001/pokemons",pokemonData);
+        console.log(response.data)
+        dispatch({
+        type: actionTypes.CREATE_POKEMON_SUCCESS,
+        payload: response.data,
+        });
+    } catch (error) {
+        dispatch({
+        type: actionTypes.CREATE_POKEMON_FAILURE,
+        payload: error.message,
         });
     }
 };

@@ -53,14 +53,14 @@ const Pokemon = sequelize.define(
         },
         },
         altura: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             isFloat: true,
         },
         },
         peso: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             isFloat: true,
