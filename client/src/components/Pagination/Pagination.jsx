@@ -27,11 +27,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
         } else if (currentButton === 4) {
           const sliced = numberOfPages.slice(0, 5);
           tempNumberOfPages = [...sliced, dotsInitial, numberOfPages.length];
-        } else if (
-          currentButton > 4 &&
-          currentButton < numberOfPages.length - 2
-        ) {
-          // from 5 to 8 -> (10 - 2)
+        } else if (currentButton > 4 && currentButton < numberOfPages.length - 2) {
           const sliced1 = numberOfPages.slice(currentButton - 2, currentButton);
           const sliced2 = numberOfPages.slice(currentButton, currentButton + 1);
           tempNumberOfPages = [
@@ -43,11 +39,9 @@ const Pagination = ({ pages, setCurrentPage }) => {
             numberOfPages.length,
           ];
         } else if (currentButton > numberOfPages.length - 3) {
-          // > 7
           const sliced = numberOfPages.slice(numberOfPages.length - 4); 
           tempNumberOfPages = [1, dotsLeft, ...sliced];
         } else if (currentButton === dotsInitial) {
-
           setCurrentButton(arrOfCurrButtons[arrOfCurrButtons.length - 3] + 1);
         } else if (currentButton === dotsRight) {
           setCurrentButton(arrOfCurrButtons[3] + 2);
@@ -62,22 +56,24 @@ const Pagination = ({ pages, setCurrentPage }) => {
     return (
       <nav className="pagination-container">
         <button
-          className={`${currentButton === 1 ? "disabled" : ""}`}
+          className={`${currentButton === 1 ? "disabled" : "first-last"}`}
           onClick={() =>
             setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
           }>
           Anterior
         </button>
         {arrOfCurrButtons.map((item, index) => (
-            <button
-              key={index}
-              className={`${currentButton === item ? "active" : ""}`}
-              onClick={() => setCurrentButton(item)}>
-              {item}
-            </button>
+          <button
+            key={index}
+            className={`${currentButton === item ? "active" : ""}`}
+            onClick={() => setCurrentButton(item)}>
+            {item}
+          </button>
         ))}
         <button
-          className={`${currentButton === numberOfPages.length ? "disabled" : ""}`}
+          className={`${
+            currentButton === numberOfPages.length ? "disabled" : "first-last"
+          }`}
           onClick={() =>
             setCurrentButton((prev) =>
               prev >= numberOfPages.length ? prev : prev + 1
