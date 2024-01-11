@@ -8,21 +8,23 @@ const isValidUrl = (url) => {
   return url.startsWith("http://") || url.startsWith("https://");
 };
 
-const validateForm = (name, value) => {
+const validateForm = (name, pokemonData) => {
+
+  console.log("validation:"+pokemonData);
 
   const fieldErrors = { }; 
 
   switch (name) {
     case "nombre":
-      if (value.trim().length === 0) {
+      if (pokemonData.trim().length === 0) {
         fieldErrors.message = "Por favor indica el nombre de tu Pokemon.";
         fieldErrors.tipo = "default";
         fieldErrors.icon = "default";
-      } else if (value.trim() && isValidName(value)) {
+      } else if (pokemonData.trim() && isValidName(pokemonData)) {
         fieldErrors.message = "No puedes usar símbolos para el nombre.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
-      } else if (value.trim() && value.length > 15) {
+      } else if (pokemonData.trim() && pokemonData.length > 15) {
         fieldErrors.message = "No puedes ingresar más de 15 caracteres.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -34,11 +36,11 @@ const validateForm = (name, value) => {
       break;
 
     case "imagen":
-      if (value.trim().length === 0) {
+      if (pokemonData.trim().length === 0) {
         fieldErrors.message = "Ingresa la URL (la dirección) de tu imagen";
         fieldErrors.tipo = "default";
         fieldErrors.icon = "default";
-      } else if (value.trim() && !isValidUrl(value)) {
+      } else if (pokemonData.trim() && !isValidUrl(pokemonData)) {
         fieldErrors.message = "Ingresa una URL válida para la imagen.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -50,11 +52,12 @@ const validateForm = (name, value) => {
       break;
 
     case "vida":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Ingresa un valor que indique la vida de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Ingresa un valor que indique la vida de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -66,11 +69,12 @@ const validateForm = (name, value) => {
       break;
 
     case "ataque":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Ingresa un valor que indique el poder de ataque de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Ingresa un valor que indique el poder de ataque de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -82,11 +86,12 @@ const validateForm = (name, value) => {
       break;
 
     case "defensa":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Ingresa un valor que indique la capacidad de defensa de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Ingresa un valor que indique la capacidad de defensa de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -98,11 +103,12 @@ const validateForm = (name, value) => {
       break;
 
     case "velocidad":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Ingresa un valor que indique la velocidad de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Ingresa un valor que indique la velocidad de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -114,11 +120,12 @@ const validateForm = (name, value) => {
       break;
 
     case "altura":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Por favor ingresa la altura (en metros) de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Por favor ingresa la altura (en metros) de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
@@ -130,12 +137,29 @@ const validateForm = (name, value) => {
       break;
 
     case "peso":
-      if (value.trim().length === 0) {
-        fieldErrors.message = "Por favor ingresa el peso (en kilogramos) de tu Pokemon.",
-        fieldErrors.tipo = "default";
+      if (pokemonData.trim().length === 0) {
+        (fieldErrors.message =
+          "Por favor ingresa el peso (en kilogramos) de tu Pokemon."),
+          (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
-      } else if (value <= 0) {
+      } else if (pokemonData <= 0) {
         fieldErrors.message = "Ingresa un valor que sea mayor a cero.";
+        fieldErrors.tipo = "error";
+        fieldErrors.icon = "error";
+      } else {
+        fieldErrors.message = "Todo parece correcto,";
+        fieldErrors.tipo = "success";
+        fieldErrors.icon = "success";
+      }
+      break;
+
+    case "tipos":
+      if (pokemonData.length === 0) {
+        (fieldErrors.message = "Por favor indica de que tipo es tu Pokemon."),
+          (fieldErrors.tipo = "default");
+        fieldErrors.icon = "default";
+      } else if (pokemonData.length > 2) {
+        fieldErrors.message = "No puedes indicar mas de 2 tipos distintos.";
         fieldErrors.tipo = "error";
         fieldErrors.icon = "error";
       } else {

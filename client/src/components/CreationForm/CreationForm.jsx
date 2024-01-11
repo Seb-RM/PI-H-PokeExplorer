@@ -4,19 +4,17 @@ import { createPokemon, fetchTypes } from "../../redux/actions/pokemonsActions.j
 import { useEffect, useState } from "react";
 import validateForm from "../../utils/validateForm.js";
 import { INITIAL_ERRORS, INITIAL_POKEMON_DATA } from "../../constants/formConstants.js";
-import validateTypes from "../../utils/validateTypes.js";
+import { formatearAlturaPeso, formatearNombre } from "../../utils/formatData.js";
 
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 
-const CreationForm = () => {
+import "./CreationForm.css";
 
+const CreationForm = () => {
   const dispatch = useDispatch();
 
   const { types } = useSelector((state) => state.pokemonStates);
-
-  useEffect(() => {
-    dispatch(fetchTypes());
-  }, [dispatch]);
+  const { serverMessage } = useSelector((state) => state.pokemonStates);
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [pokemonData, setPokemonData] = useState(INITIAL_POKEMON_DATA);
@@ -30,92 +28,148 @@ const CreationForm = () => {
     setFormValid(isValid);
   }, [errors]);
 
-
-  const validateAndSetErrors = (name, value) => {
-      let validationFunction;
-
-      switch (name) {
-        case "tipos":
-          validationFunction = validateTypes;
-          break;
-        default:
-          validationFunction = validateForm;
-          break;
-      }
-
-      if (validationFunction) {
-        const { message, tipo, icon } = validationFunction(name, value);
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          [name]: { message, tipo, icon },
-        }));
-      }
-  };
-
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    
-    setPokemonData((prevPokemonData)=> {
-      if (type === "checkbox") {
+
+    if (type === "checkbox") {
+      setPokemonData((prevPokemonData) => {
+        const arrayTipos = checked
+          ? [...prevPokemonData.tipos, value]
+          : prevPokemonData.tipos.filter((tipo) => tipo !== value);
+
         return {
           ...prevPokemonData,
-          tipos: checked
-          ? [...prevPokemonData.tipos, value]
-          : prevPokemonData.tipos.filter((tipo) => tipo !== value),
+          tipos: arrayTipos,
         };
-      } else {
+      });
+    } else {
+      setPokemonData((prevPokemonData) => {
         return {
           ...prevPokemonData,
           [name]: value,
         };
-      }
-    });
-    
-    validateAndSetErrors(name, value);
-
+      });
+    }
   };
   
   useEffect(() => {
-    validateAndSetErrors("tipos", pokemonData.tipos);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "nombre": validateForm("nombre", pokemonData.nombre),
+    }));
+  }, [pokemonData.nombre]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "imagen": validateForm("imagen", pokemonData.imagen),
+    }));
+  }, [pokemonData.imagen]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "vida": validateForm("vida", pokemonData.vida),
+    }));
+  }, [pokemonData.vida]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "ataque": validateForm("ataque", pokemonData.ataque),
+    }));
+  }, [pokemonData.ataque]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "defensa": validateForm("defensa", pokemonData.defensa),
+    }));
+  }, [pokemonData.defensa]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "velocidad": validateForm("velocidad", pokemonData.velocidad),
+    }));
+  }, [pokemonData.velocidad]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "altura": validateForm("altura", pokemonData.altura),
+    }));
+  }, [pokemonData.altura]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "peso": validateForm("peso", pokemonData.peso),
+    }));
+  }, [pokemonData.peso]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      "tipos": validateForm("tipos", pokemonData.tipos),
+    }));
   }, [pokemonData.tipos]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      nombre: validateForm("nombre", pokemonData.nombre),
+    }));
+  }, [pokemonData.nombre]);
+
+  useEffect(() => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      nombre: validateForm("nombre", pokemonData.nombre),
+    }));
+  }, [pokemonData.nombre]);
+
+  useEffect(() => {
+    dispatch(fetchTypes());
+  }, [dispatch]);
+
+  const datosFormateados = {
+    ...pokemonData,
+    nombre: formatearNombre(pokemonData.nombre),
+    altura: formatearAlturaPeso(pokemonData.altura),
+    peso: formatearAlturaPeso(pokemonData.peso),
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newErrors = validateForm();
+    try {
+      dispatch(createPokemon(datosFormateados));
 
-    if (Object.keys(newErrors).length === 0) {
-      try {
-        dispatch(createPokemon(pokemonData));
+      setFormSubmitted(true);
 
+      setTimeout(() => {
         setPokemonData(INITIAL_POKEMON_DATA);
         setErrors(INITIAL_ERRORS);
-
-        setFormSubmitted(true);
-
-        setTimeout(() => {
-          setFormSubmitted(false);
-        }, 5000);
-      } catch (error) {
-        setErrors({ serverError: "Error al enviar el formulario" });
-      }
-    } else {
-      setErrors(newErrors);
+        setFormSubmitted(false);
+      }, 5000);
+    } catch (error) {
+      setErrors({ serverError: "Error al enviar el formulario" });
     }
   };
 
   return (
-    <>
-      <div>
-        <div>
-          <h1>Crea un nuevo Pokemon.</h1>
-          <p>
-            Ingresa los datos que pide el formulario, para agregar un nuevo
-            pokemon a la lista.
-          </p>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div>
+    <div className="form-container">
+      <div className="form-title">
+        <h1>Crea un nuevo Pokemon.</h1>
+        <p>
+          Ingresa los datos que pide el formulario, para agregar un nuevo
+          pokemon a la lista.
+        </p>
+      </div>
+      <form onSubmit={handleSubmit} className="form-data">
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Nombre :</h4>
             </label>
@@ -125,9 +179,11 @@ const CreationForm = () => {
               value={pokemonData.nombre}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.nombre} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.nombre} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Imagen :</h4>
             </label>
@@ -137,9 +193,11 @@ const CreationForm = () => {
               value={pokemonData.imagen}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.imagen} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.imagen} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Vida :</h4>
             </label>
@@ -150,9 +208,11 @@ const CreationForm = () => {
               value={pokemonData.vida}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.vida} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.vida} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Ataque :</h4>
             </label>
@@ -163,9 +223,11 @@ const CreationForm = () => {
               value={pokemonData.ataque}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.ataque} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.ataque} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Defensa :</h4>
             </label>
@@ -176,9 +238,11 @@ const CreationForm = () => {
               value={pokemonData.defensa}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.defensa} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.defensa} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Velocidad :</h4>
             </label>
@@ -189,9 +253,11 @@ const CreationForm = () => {
               value={pokemonData.velocidad}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.velocidad} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.velocidad} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Altura :</h4>
             </label>
@@ -202,9 +268,11 @@ const CreationForm = () => {
               value={pokemonData.altura}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.altura} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.altura} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Peso :</h4>
             </label>
@@ -215,13 +283,17 @@ const CreationForm = () => {
               value={pokemonData.peso}
               onChange={handleInputChange}
             />
-            <ErrorMessage errors={errors.peso} />
           </div>
-          <div>
+          <ErrorMessage errors={errors.peso} />
+        </div>
+        <div className="input-container">
+          <div className="label-input">
             <label>
               <h4>Tipo :</h4>
             </label>
-            <ErrorMessage errors={errors.tipos} />
+          </div>
+          <ErrorMessage errors={errors.tipos} />
+          <div className="check-boxes">
             {types.map((type, index) => (
               <div key={index}>
                 <input
@@ -235,13 +307,13 @@ const CreationForm = () => {
               </div>
             ))}
           </div>
-          <button type="submit" disabled={!isFormValid}>
-            Crear Pokemon
-          </button>
-          {formSubmitted && <p>¡Formulario enviado exitosamente!</p>}
-        </form>
-      </div>
-    </>
+        </div>
+        <button type="submit" disabled={!isFormValid} className="submit-button">
+          Crear Pokemon
+        </button>
+        {formSubmitted && <p>{serverMessage}</p>}
+      </form>
+    </div>
   );
 };
 

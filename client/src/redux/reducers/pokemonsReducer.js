@@ -5,7 +5,8 @@ const initialState = {
     loading: true,
     error: null,
     pokemonDetails: null,
-    types: []
+    types: [],
+    serverMessage: "",
 };
 
 const pokemonReducer = ( state = initialState, action) => {
@@ -51,7 +52,23 @@ const pokemonReducer = ( state = initialState, action) => {
           ...state,
           error: action.payload,
         };
-        
+
+      case actionTypes.CREATE_POKEMON_SUCCESS: {
+        const { message } = action.payload;
+
+        return {
+          ...state,
+          serverMessage: message,
+        };
+      }
+      case actionTypes.CREATE_POKEMON_FAILURE:{
+        const { message } = action.payload;
+
+        return {
+          ...state,
+          serverMessage: message,
+        };
+      }
       default:
         return state;
     }

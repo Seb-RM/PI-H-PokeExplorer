@@ -1,0 +1,53 @@
+.form-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+    margin-top: 25px;
+}
+
+.form-data {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3px;
+    row-gap: 2px;
+    max-width: 400px;
+}
+
+.form-title {
+    margin-bottom: 8px;
+    text-align: center;
+}
+.input-container {
+    margin-bottom: 5px;
+}
+
+.label-input {
+    border: 1px solid black;
+    display: flex;
+    margin-bottom: 2px;
+    font-size: 1.3rem;
+}
+
+.label-input label{
+    margin-right: 3px;
+}
+
+.label-input input{
+    font-size: 1.2rem;
+    text-align: center;
+    width: 180px;
+}
+.check-boxes {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.submit-button {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}

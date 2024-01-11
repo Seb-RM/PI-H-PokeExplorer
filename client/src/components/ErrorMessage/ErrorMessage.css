@@ -1,0 +1,30 @@
+.default{
+    display: flex;
+    filter: invert(21%) sepia(99%) saturate(1778%) hue-rotate(197deg) brightness(99%) contrast(98%);    
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.error{
+    display: flex;
+    filter: invert(27%) sepia(46%) saturate(4420%) hue-rotate(341deg) brightness(74%) contrast(106%);
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.success{
+    display: flex;
+    filter: invert(60%) sepia(14%) saturate(4290%) hue-rotate(81deg) brightness(93%) contrast(84%);
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.error-icon {
+    display: inline;
+}

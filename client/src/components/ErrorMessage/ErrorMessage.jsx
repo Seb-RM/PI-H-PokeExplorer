@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import okIcon from "../../assets/icons/thumbs-up-solid.svg";
 import errorIcon from "../../assets/icons/xmark-solid.svg";
 import defaultIcon from "../../assets/icons/asterisk-solid.svg";
+import "./ErrorMessage.css"
 
 const ErrorMessage = ({ errors }) => {
 
@@ -15,7 +16,7 @@ const ErrorMessage = ({ errors }) => {
   }
   return (
     <div className={errors.tipo}>
-      <img src={iconSource} alt={`${errors.icon}`} />
+      <img src={iconSource} alt={`${errors.icon}`} className="error-icon"/>
       <p className="text">{errors.message}</p>
     </div>
   );

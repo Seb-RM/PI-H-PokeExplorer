@@ -23,33 +23,32 @@ export const INITIAL_ERRORS = {
         icon: "default",
     },
     vida: {
-        message: "Ingresa un valor que indique la vida de tu Pokemon.",
+        message: "Ingresa la vida de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
     ataque: {
-        message: "Ingresa un valor que indique el poder de ataque de tu Pokemon.",
+        message: "Ingresa el poder de ataque de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
     defensa: {
-        message:
-        "Ingresa un valor que indique la capacidad de defensa de tu Pokemon.",
+        message: "Ingresa capacidad de defensa de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
     velocidad: {
-        message: "Ingresa un valor que indique la velocidad de tu Pokemon.",
+        message: "Ingresa la velocidad de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
     altura: {
-        message: "Por favor ingresa la altura (en metros) de tu Pokemon.",
+        message: "Ingresa la altura (en metros) de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
     peso: {
-        message: "Por favor ingresa el peso (en kilogramos) de tu Pokemon.",
+        message: "Ingresa el peso (en kilogramos) de tu Pokemon.",
         tipo: "default",
         icon: "default",
     },
