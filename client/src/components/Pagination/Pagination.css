@@ -1,0 +1,8 @@
+.pagination-container{
+    max-width: 80%;
+    margin: 0 auto;
+}
+.pagination {
+    display: flex;
+    justify-content: space-around;
+}
