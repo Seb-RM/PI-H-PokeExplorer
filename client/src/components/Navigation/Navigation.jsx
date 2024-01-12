@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
+import FilterButtons from "../FilterButtons/FilterButtons";
+import PropTypes from "prop-types";
 
-const Navigation = () =>{
+const Navigation = ({ handleSort }) => {
     return (
-        <>
-            <div>
-                <Link to={"/pokemonForm"}>
-                    <button>Crea tu Pokemon!!</button>
-                </Link>
-            </div>
-        </>
+        <div>
+        <FilterButtons handleSort={handleSort} />
+        <Link to={"/pokemonForm"}>
+            <button>Crea tu Pokemon!!</button>
+        </Link>
+        </div>
     );
+};
+
+Navigation.propTypes = {
+    handleSort: PropTypes.func.isRequired,
 };
 
 export default Navigation;

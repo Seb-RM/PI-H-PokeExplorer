@@ -61,7 +61,7 @@ const pokemonReducer = ( state = initialState, action) => {
           serverMessage: message,
         };
       }
-      case actionTypes.CREATE_POKEMON_FAILURE:{
+      case actionTypes.CREATE_POKEMON_FAILURE: {
         const { message } = action.payload;
 
         return {
@@ -69,6 +69,51 @@ const pokemonReducer = ( state = initialState, action) => {
           serverMessage: message,
         };
       }
+
+      case actionTypes.SORT_POKEMONS_BY_NAME: {
+        const sortedPokemon = [...state.pokemonsList];
+        if(action.payload === "asc") {
+          sortedPokemon.sort((a,b)=>{
+            const nameA = a.nombre.toLowerCase();
+            const nameB = b.nombre.toLowerCase();
+
+            if(nameA > nameB) return 1;
+            else return -1;
+          })
+        } else if(action.payload === "desc") {
+          sortedPokemon.sort((a,b)=> {
+            const nameA = a.nombre.toLowerCase();
+            const nameB = b.nombre.toLowerCase();
+
+            if(nameA < nameB) return 1;
+            else return -1;
+          });
+        }
+        return {
+          ...state,
+          pokemonsList: sortedPokemon
+        }
+      }
+      
+      case actionTypes.SORT_POKEMONS_BY_ATTACK: {
+        const sortedPokemon = [...state.pokemonsList];
+        if (action.payload === "asc") {
+          sortedPokemon.sort((a, b) => {
+            if (a.ataque > b.ataque) return 1;
+            else return -1;
+          });
+        } else if (action.payload === "desc") {
+          sortedPokemon.sort((a, b) => {
+            if (a.ataque < b.ataque) return 1;
+            else return -1;
+          });
+        }
+        return {
+          ...state,
+          pokemonsList: sortedPokemon,
+        };
+      }
+
       default:
         return state;
     }

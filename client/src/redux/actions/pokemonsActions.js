@@ -64,3 +64,17 @@ export const createPokemon = (pokemonData) => async (dispatch) => {
         });
     }
 };
+
+export const sortPokemonsByName = (order) => {
+    return {
+    type: actionTypes.SORT_POKEMONS_BY_NAME,
+    payload: order,
+    }
+};
+
+export const sortPokemonsByAttack = (order) => {
+    return {
+        type: actionTypes.SORT_POKEMONS_BY_ATTACK,
+        payload: order,
+    };
+};
