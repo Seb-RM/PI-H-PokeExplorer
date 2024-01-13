@@ -92,6 +92,20 @@ export const filterPokemonsByType = (dataType) => {
     };
 };
 
+export const SearchPokemonsByName = (name) => async(dispatch)=> {
+    try {
+        const response = await axios.get(`http://localhost:3001/pokemons/search/name?name=${name}`);
+        dispatch({
+            type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
+            payload: response.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,
+            payload: error.message,
+        });
+    }
+};
 
 export const updatePokemons = (pokemons) => ({
     type: actionTypes.UPDATE_POKEMONS,

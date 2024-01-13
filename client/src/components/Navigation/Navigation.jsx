@@ -1,18 +1,21 @@
-import { Link } from "react-router-dom";
-import SortingButtons from "../SortingButtons/SortingButtons.jsx"
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import SortingButtons from "../SortingButtons/SortingButtons.jsx"
 import FilteringButtons from "../FilteringButtons/FilteringButtons.jsx";
 
 const Navigation = ({ handleSort, handleFilter }) => {
-  return (
-    <div>
-      <FilteringButtons handleFilter={handleFilter} />
-      <SortingButtons handleSort={handleSort} />
-      <Link to={"/pokemonForm"}>
-        <button>Crea tu Pokemon!!</button>
-      </Link>
-    </div>
-  );
+    return (
+        <div>
+            <FilteringButtons handleFilter={handleFilter} />
+            <SortingButtons handleSort={handleSort} />
+            <SearchBar/>
+            <Link to={"/pokemonForm"}>
+                <button>Crea tu Pokemon!!</button>
+            </Link>
+        </div>
+    );
 };
 
 Navigation.propTypes = {

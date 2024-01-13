@@ -77,24 +77,24 @@ const pokemonReducer = (state = initialState, action) => {
     case actionTypes.SORT_POKEMONS_BY_NAME: {
       const sortedPokemon = [...state.updatedList];
 
-      if(action.payload) 
-      if (action.payload === "asc") {
-        sortedPokemon.sort((a, b) => {
-          const nameA = a.nombre.toLowerCase();
-          const nameB = b.nombre.toLowerCase();
+      if (action.payload)
+        if (action.payload === "asc") {
+          sortedPokemon.sort((a, b) => {
+            const nameA = a.nombre.toLowerCase();
+            const nameB = b.nombre.toLowerCase();
 
-          if (nameA > nameB) return 1;
-          else return -1;
-        });
-      } else if (action.payload === "desc") {
-        sortedPokemon.sort((a, b) => {
-          const nameA = a.nombre.toLowerCase();
-          const nameB = b.nombre.toLowerCase();
+            if (nameA > nameB) return 1;
+            else return -1;
+          });
+        } else if (action.payload === "desc") {
+          sortedPokemon.sort((a, b) => {
+            const nameA = a.nombre.toLowerCase();
+            const nameB = b.nombre.toLowerCase();
 
-          if (nameA < nameB) return 1;
-          else return -1;
-        });
-      }
+            if (nameA < nameB) return 1;
+            else return -1;
+          });
+        }
       return {
         ...state,
         updatedList: sortedPokemon,
@@ -156,7 +156,8 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredPokemons: state.updatedList.filter((pokemon) => {
-          return pokemon.tipos.includes(type);})
+          return pokemon.tipos.includes(type);
+        }),
       };
     }
 
@@ -164,7 +165,23 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedList: action.payload,
-        unfilteredPokemons: action.payload
+        unfilteredPokemons: action.payload,
+      };
+
+    case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS:
+      return {
+        ...state,
+        pokemonsList: action.payload,
+        updatedList: action.payload,
+        loading: false,
+        error: null,
+      };
+
+    case actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
 
     default:

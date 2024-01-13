@@ -15,30 +15,30 @@ const FilteringButtons = ({ handleFilter}) => {
     }, [dispatch]);
 
     return (
-      <div>
         <div>
-          <label htmlFor="filterByOrigin">Filtrar por Origen:</label>
-          <select
-            name="filterByOrigin"
-            id="filterByOrigin"
-            onChange={handleFilter}>
-            <option value="all"> Todos </option>
-            <option value="database">Base de Datos</option>
-            <option value="api">API</option>
-          </select>
+            <div>
+                <label htmlFor="filterByOrigin">Filtrar por Origen:</label>
+                <select
+                name="filterByOrigin"
+                id="filterByOrigin"
+                onChange={handleFilter}>
+                    <option value="all"> Todos </option>
+                    <option value="database">Base de Datos</option>
+                    <option value="api">API</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="filterByType">Filtrar por Tipo:</label>
+                <select name="filterByType" id="filterByType" onChange={handleFilter}>
+                    <option value="all"> Todos </option>
+                    {types.map((type) => (
+                        <option key={type.id} value={type.nombre}>
+                        {type.nombre}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
-        <div>
-          <label htmlFor="filterByType">Filtrar por Tipo:</label>
-          <select name="filterByType" id="filterByType" onChange={handleFilter}>
-            <option value="all"> Todos </option>
-            {types.map((type) => (
-              <option key={type.id} value={type.nombre}>
-                {type.nombre}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
     );
 };
 
