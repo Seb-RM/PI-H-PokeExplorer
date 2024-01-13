@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 import "./ErrorPage.css";
 
 const ErrorPage = ({ error }) => {

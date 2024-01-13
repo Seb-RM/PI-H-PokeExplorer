@@ -1,0 +1,32 @@
+@font-face{
+    font-family:  PokemonFont;
+    src: url('../../assets/fonts/PokemonSolidNormal-xyWR.ttf');
+}
+
+.homeContainer {
+    margin: 0;
+    background-color: #FFDE00;
+    min-height: 100vh;
+}
+.page-title {
+    background: linear-gradient(61deg, rgb(131, 84, 252) 11%, rgb(255, 193, 99) 99%);
+}
+
+.page-title h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: PokemonFont, sans-serif;
+    color: rgb(239, 225, 97);
+    -webkit-text-stroke: 2px rgb(30, 30, 162);
+}
+
+.pokemon-component {
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 520px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 5px double rgb(49, 6, 150);
+}

@@ -16,6 +16,7 @@ const PokemonCards = () => {
     });
     
     const [currentPage, setCurrentPage] = useState(1);
+    const [ elementsPerPage ] = useState(12);
 
     const pokemonsList = updatedList;
 
@@ -35,14 +36,11 @@ const PokemonCards = () => {
     return <ErrorPage error={error}/>
     }
 
-    const elementsPerPage = 12;
     const totalElements = pokemonsList.length;
     const totalPages = Math.ceil(totalElements / elementsPerPage);
     const startIndex = (currentPage - 1) * elementsPerPage;
     const endIndex = startIndex + elementsPerPage;
     const visiblePokemons = pokemonsList.slice(startIndex, endIndex);
-
-    
 
     return (
       <div>

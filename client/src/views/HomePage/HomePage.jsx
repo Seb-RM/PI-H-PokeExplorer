@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PokemonCards from "../../components/PokemonCards/PokemonCards.jsx";
-import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName } from "../../redux/actions/pokemonsActions.js";
+import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName, updateLoadingValue } from "../../redux/actions/pokemonsActions.js";
+import "./HomePage.css"
 
 const HomePage = () => {
 
@@ -29,15 +30,17 @@ const HomePage = () => {
             dispatch(filterPokemonsByType(event.target.value));
         }
     };
-    console.log(searchTerm)
+
     const handleSearch = (searchTerm) => {
-        console.log(searchTerm)
         dispatch(SearchPokemonsByName(searchTerm));
+        dispatch(updateLoadingValue(true))
     };
 
     return (
         <div className="homeContainer">
-            <header></header>
+            <header className="page-title">
+                <h1>Pokemon Explorer</h1>
+            </header>
             <nav>
                 <Navigation
                     handleSort={handleSort}
@@ -47,7 +50,7 @@ const HomePage = () => {
                     searchTerm={searchTerm}
                 />
             </nav>
-            <section>
+            <section className="pokemon-component">
                 <PokemonCards />
             </section>
         </div>
