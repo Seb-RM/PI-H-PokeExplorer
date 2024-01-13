@@ -1,20 +1,20 @@
 import PropTypes from "prop-types";
 
-const FilterButtons = ({ handleSort }) => {
+const SortingButtons = ({ handleSort }) => {
     return (
       <div>
         <div>
-          <label>Ordenar por nombre:</label>
+          <label htmlFor="sortByName">Ordenar por Nombre:</label>
           <select name="sortByName" id="sortByName" onChange={handleSort}>
-            <option> -- </option>
+            <option value=""> -- </option>
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
           </select>
         </div>
         <div>
-          <label>Ordenar por Ataque:</label>
+          <label htmlFor="sortByAttack">Ordenar por Ataque:</label>
           <select name="sortByAttack" id="sortByAttack" onChange={handleSort}>
-            <option> -- </option>
+            <option value=""> -- </option>
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
           </select>
@@ -23,8 +23,8 @@ const FilterButtons = ({ handleSort }) => {
     );
 };
 
-FilterButtons.propTypes = {
+SortingButtons.propTypes = {
     handleSort: PropTypes.func.isRequired,
 };
 
-export default FilterButtons;
+export default SortingButtons;

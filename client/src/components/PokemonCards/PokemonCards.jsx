@@ -1,7 +1,7 @@
 import PokemonCard from "../PokemonCard/PokemonCard.jsx"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchPokemons } from "../../redux/actions/pokemonsActions.js";
+import { fetchPokemons, updatePokemons } from "../../redux/actions/pokemonsActions.js";
 import "./PokemonCards.css"
 import Pagination from "../Pagination/Pagination.jsx";
 
@@ -9,15 +9,21 @@ const PokemonCards = () => {
 
     const dispatch = useDispatch();
 
-    const { pokemonsList, loading, error } = useSelector((state) => {
+    const { updatedList, loading, error, filteredPokemons } = useSelector((state) => {
         return state.pokemonStates;
     });
     
     const [currentPage, setCurrentPage] = useState(1);
 
+    const pokemonsList = updatedList;
+
     useEffect(() => {
         dispatch(fetchPokemons());
     }, [dispatch]);
+
+    useEffect(() => {
+      dispatch(updatePokemons(filteredPokemons));
+    }, [dispatch, filteredPokemons]);
 
     if (loading) {
     return <p>Cargando...</p>;

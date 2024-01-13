@@ -49,7 +49,6 @@ export const fetchTypes = () => async (dispatch) => {
 };
 
 export const createPokemon = (pokemonData) => async (dispatch) => {
-    
     try {
         const response = await axios.post("http://localhost:3001/pokemons",pokemonData);
         console.log(response.data)
@@ -78,3 +77,23 @@ export const sortPokemonsByAttack = (order) => {
         payload: order,
     };
 };
+
+export const filterPokemonsByOrigin = (dataOrigin) =>  {
+    return {
+        type: actionTypes.FILTER_POKEMONS_BY_ORIGIN,
+        payload: dataOrigin,
+    };
+};
+
+export const filterPokemonsByType = (dataType) => {
+    return {
+        type: actionTypes.FILTER_POKEMONS_BY_TYPE,
+        payload: dataType,
+    };
+};
+
+
+export const updatePokemons = (pokemons) => ({
+    type: actionTypes.UPDATE_POKEMONS,
+    payload: pokemons,
+});
