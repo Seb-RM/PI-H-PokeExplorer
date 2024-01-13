@@ -168,7 +168,8 @@ const pokemonReducer = (state = initialState, action) => {
         unfilteredPokemons: action.payload,
       };
 
-    case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS:
+    case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS: {
+      console.log(action.payload);
       return {
         ...state,
         pokemonsList: action.payload,
@@ -176,12 +177,19 @@ const pokemonReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
+    }
 
     case actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
+      };
+
+    case actionTypes.UPDATE_LOADING_VALUE:
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     default:

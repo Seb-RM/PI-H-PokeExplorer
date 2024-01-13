@@ -92,22 +92,34 @@ export const filterPokemonsByType = (dataType) => {
     };
 };
 
-export const SearchPokemonsByName = (name) => async(dispatch)=> {
+export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
     try {
-        const response = await axios.get(`http://localhost:3001/pokemons/search/name?name=${name}`);
+        const response = await axios.get(
+        `http://localhost:3001/pokemons/search/name?name=${searchTerm}`
+        );
         dispatch({
-            type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
-            payload: response.data,
+        type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
+        payload: response.data,
         });
     } catch (error) {
+        console.log(error.response)
         dispatch({
-            type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,
-            payload: error.message,
+        type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,
+        payload: error.message,
         });
     }
 };
 
-export const updatePokemons = (pokemons) => ({
+export const updatePokemons = (pokemons) => {
+    return {
     type: actionTypes.UPDATE_POKEMONS,
     payload: pokemons,
-});
+    }
+};
+
+export const updateLoadingValue = (newValue) => {
+    return {
+        type: actionTypes.UPDATE_LOADING_VALUE,
+        payload: newValue,
+    };
+};

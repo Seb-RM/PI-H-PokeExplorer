@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 const SearchBar = ({ handleSearch, setSearchTerm, searchTerm }) => {
+
     return (
         <div>
             <label htmlFor="pokemon-search">Encuentra tu Pokemon:</label>
@@ -11,7 +12,7 @@ const SearchBar = ({ handleSearch, setSearchTerm, searchTerm }) => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch}>Buscar</button>
+            <button onClick={handleSearch(searchTerm)}>Buscar</button>
         </div>
     );
 };

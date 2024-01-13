@@ -1,12 +1,10 @@
-import PokemonCards from "../../components/PokemonCards/PokemonCards.jsx";
-import Navigation from "../../components/Navigation/Navigation.jsx";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { sortPokemonsByName, 
-        sortPokemonsByAttack, 
-        filterPokemonsByOrigin, 
-        filterPokemonsByType, 
-        SearchPokemonsByName } from "../../redux/actions/pokemonsActions.js";
+
+import { useDispatch } from "react-redux";
+
+import Navigation from "../../components/Navigation/Navigation.jsx";
+import PokemonCards from "../../components/PokemonCards/PokemonCards.jsx";
+import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName } from "../../redux/actions/pokemonsActions.js";
 
 const HomePage = () => {
 
@@ -33,6 +31,7 @@ const HomePage = () => {
     };
     console.log(searchTerm)
     const handleSearch = (searchTerm) => {
+        console.log(searchTerm)
         dispatch(SearchPokemonsByName(searchTerm));
     };
 

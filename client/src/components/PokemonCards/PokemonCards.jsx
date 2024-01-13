@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { fetchPokemons, updatePokemons } from "../../redux/actions/pokemonsActions.js";
 import "./PokemonCards.css"
 import Pagination from "../Pagination/Pagination.jsx";
+import LoadingCards from "../LoadingCards/LoadingCards.jsx";
+import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 
 const PokemonCards = () => {
 
@@ -26,11 +28,11 @@ const PokemonCards = () => {
     }, [dispatch, filteredPokemons]);
 
     if (loading) {
-    return <p>Cargando...</p>;
+    return <LoadingCards/>
     }
 
     if (error) {
-    return <p>Error: {error}</p>;
+    return <ErrorPage error={error}/>
     }
 
     const elementsPerPage = 12;

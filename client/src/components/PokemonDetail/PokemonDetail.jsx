@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchPokemonDetails } from "../../redux/actions/pokemonsActions.js"
 import { useEffect } from "react";
+import LoadingCards from "../LoadingCards/LoadingCards.jsx";
 
 const PokemonDetail = (id) => {
+    
     const dispatch = useDispatch();
     const { pokemonDetails, loading, error } = useSelector(
         (state) => state.pokemonStates
@@ -11,10 +13,11 @@ const PokemonDetail = (id) => {
 
     useEffect(() => {
         dispatch(fetchPokemonDetails(id));
+
     }, [dispatch, id]);
 
     if (loading) {
-        return <p>Cargando...</p>;
+        return <LoadingCards/>;
     }
 
     if (error) {
