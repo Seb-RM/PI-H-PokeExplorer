@@ -4,12 +4,17 @@
 }
 
 .homeContainer {
-    margin: 0;
     background-color: #FFDE00;
     min-height: 100vh;
+    padding-bottom: 15px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
 }
 .page-title {
     background: linear-gradient(61deg, rgb(131, 84, 252) 11%, rgb(255, 193, 99) 99%);
+    flex: 0 1 auto;
 }
 
 .page-title h1 {
@@ -20,13 +25,18 @@
     -webkit-text-stroke: 2px rgb(30, 30, 162);
 }
 
+.nav-container {
+    margin-bottom: 15px;
+    flex: 0 1 auto;
+}
 .pokemon-component {
+    flex: 1 1 auto;
     min-width: 95%;
     max-width: 95%;
-    min-height: 520px;
-    margin: 20px auto;
+    height: auto;
+    margin: auto;
+    padding: 10px;
+    border: 5px double rgb(49, 6, 150);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: 5px double rgb(49, 6, 150);
 }

@@ -1,22 +1,27 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import capitalizeWords from "../../utils/capitalizeWords.js"
 
 import "./PokemonCard.css"
 
 const PokemonCard = ({ id, nombre, imagen, tipos }) => {
+
+    const  capitalizedName = capitalizeWords(nombre);
+    
     return (
         <>
             <div className="cardContainer">
-            <Link to={`/detail/${id}`}>
-            
-                <img src={imagen} alt="`${nombre}`" className="cardImage" />
-                <h3>{nombre}</h3>
-                <ul className="cardTypes">
-                {tipos.map((tipo, index) => (
-                    <li key={index}>{tipo}</li>
-                ))}
-                </ul>
-            </Link>
+                <Link to={`/detail/${id}`} style={{ textDecoration: "none" }}>
+                    <img src={imagen} alt="`${nombre}`" className="cardImage" />
+                    <h3 className="card-name">{capitalizedName}</h3>
+                    <ul className="cardTypes">
+                    {tipos.map((tipo, index) => (
+                        <li key={index} className={tipo}>
+                        {tipo}
+                        </li>
+                    ))}
+                    </ul>
+                </Link>
             </div>
         </>
     );

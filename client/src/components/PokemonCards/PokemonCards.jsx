@@ -44,7 +44,7 @@ const PokemonCards = () => {
 
     return (
       <div>
-        <h1>Esto es la sección Pokemon Cards</h1>
+
         <div className="cardsContainer">
           {visiblePokemons.map((pokemon, index) => (
             <PokemonCard

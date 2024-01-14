@@ -32,8 +32,8 @@ const HomePage = () => {
     };
 
     const handleSearch = (searchTerm) => {
-        dispatch(SearchPokemonsByName(searchTerm));
-        dispatch(updateLoadingValue(true))
+        // dispatch(SearchPokemonsByName(searchTerm));
+        // dispatch(updateLoadingValue(true))
     };
 
     return (
@@ -41,7 +41,7 @@ const HomePage = () => {
             <header className="page-title">
                 <h1>Pokemon Explorer</h1>
             </header>
-            <nav>
+            <nav className="nav-container">
                 <Navigation
                     handleSort={handleSort}
                     handleFilter={handleFilter}

@@ -2,15 +2,28 @@
     max-width: 250px;
     min-height: 230px;
     background-color: chocolate;
-    border: 1px solid black;
+    box-shadow: 3px 3px 1px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background-color: #371750;
+    border: 2px solid #9EDEF9;
+    padding-top: 3px;
 }
 
+.card-name {
+    font-size: 1.5rem;
+    margin: 5px auto;
+    color: #FFDE00;
+}
 .cardImage {
-    max-width: 90%;
+    max-width: 75%;
     max-height: auto;
     display: block;
     border: 1px solid black;
     margin: 0 auto;
+    padding: 5px;
+    border: 4px double #9EDEF9;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsla(47, 100%, 85%, 1) 17%, hsla(108, 36%, 78%, 1) 55%, hsla(318, 30%, 85%, 1) 100%);
 }
 
 .cardContainer a{
@@ -27,4 +40,112 @@
     }
 }
 
+.cardTypes {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin-top: 5px;
+}
 
+.cardTypes li {
+    border: 2px solid #5DC3EB;
+    border-radius: 10px;
+    padding: 1px 2px;
+    box-shadow: 2px 2px 4px 2px #FEF3A1;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cardTypes .normal {
+    background-color: #A8A77A;
+    color: #371750;
+}
+
+.fire {
+    background-color: #EE8130;
+    color: #371750;
+}
+
+.water {
+    background-color: #6390F0;
+    color: #371750;
+}
+
+.electric {
+    background-color: #F7D02C;
+    color: #371750;
+}
+
+.grass {
+    background-color: #7AC74C;
+    color: #371750;
+}
+
+.ice {
+    background-color: #96D9D6;
+    color: #371750;
+}
+
+.fighting {
+    background-color: #C22E28;
+    color: #9EDEF9;
+}
+
+.poison {
+    background-color: #A33EA1;
+    color: #9EDEF9;
+}
+
+.ground {
+    background-color: #E2BF65;
+    color: #371750;
+}
+
+.flying {
+    background-color: #A98FF3;
+    color: #371750;
+}
+
+.psychic {
+    background-color: #F95587;
+    color: #371750;
+}
+
+.bug {
+    background-color: #A6B91A;
+    color: #371750;
+}
+
+.rock {
+    background-color: #B6A136;
+    color: #371750;
+}
+
+.ghost {
+    background-color: #735797;
+    color: #9EDEF9;
+}
+
+.dragon {
+    background-color: #6F35FC;
+    color: #9EDEF9;
+}
+
+.dark {
+    background-color: #705746;
+}
+
+.steel {
+    background-color: #B7B7CE;
+    color: #371750;
+}
+
+.fairy {
+    background-color: #D685AD;
+    color: #371750;
+}
+
+.shadow {
+    background-color: #2e2e2e;
+    color: #9EDEF9;
+}

@@ -1,0 +1,23 @@
+.filtering-container {
+    display: flex;
+    font-size: 1.3rem;
+    justify-content: space-around;
+    margin: 2px 0;
+}
+
+.filtering-container select{
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+}
+.by-origin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.by-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

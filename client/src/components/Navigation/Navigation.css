@@ -1,0 +1,134 @@
+.option-container {
+    background: linear-gradient(309deg, rgba(186,219,178,1) 30%, rgba(121,173,117,1) 62%);
+    padding: 3px 0;
+    border-top: 3px double #F62D14;
+    border-bottom: 3px double #F62D14;
+}
+
+
+.visible{
+    display: block;
+    transition: 500ms linear 50ms;
+}
+
+.invisible {
+    display: none;
+    transition: 500ms linear 50ms;
+}
+
+.create-button  button{
+    display: block;
+    margin: 6px auto;
+    padding: 3px 5px;
+    font-size: 1rem;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #FFD160;
+    color: #6376B8;
+    box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.input-holder input {
+    display: block;
+    margin: 0 auto;
+}
+
+.input-holder input:checked ~.option-container{
+    flex: 0 0 auto;
+}
+
+.arrow {
+    cursor: pointer;
+    height: 57px;
+    left: 48%;
+    position: absolute;
+    top: 11%;
+    transform: translateX(-50%) translateY(-50%);
+    transform: rotate(90deg);
+    transition: transform 0.1s;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #FFAD00;
+    border: 1px solid #5DC3EB;
+    transition: 500ms linear 50ms;
+}
+
+.arrow-up {
+    cursor: pointer;
+    height: 57px;
+    left: 48%;
+    position: absolute;
+    top: 11%;
+    transform: translateX(-50%) translateY(-50%);
+    transform: rotate(-90deg);
+    transition: transform 0.1s;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #FFAD00;
+    border: 1px solid #5DC3EB;
+    transition: 500ms linear 50ms;
+}
+.arrow-top,
+.arrow-bottom {
+    background-color: #194787;
+    height: 4px;
+    left: -5px;
+    position: absolute;
+    top: 46%;
+    width: 85%;
+    &:after {
+        background-color: #fff;
+        content: '';
+        height: 95%;
+        position: absolute;
+        top: 0;
+        transition: all 0.15s;
+    }
+}
+
+.arrow-top {
+    transform: rotate(45deg);
+    transform-origin: bottom right;
+    &:after {
+    left: 100%;
+    right: 0;
+    transition-delay: 0s;
+    }
+}
+
+.arrow-bottom {
+    transform: rotate(-45deg);
+    transform-origin: top right;
+    &:after {
+    left: 0;
+    right: 100%;
+    transition-delay: 0.15s;
+    }
+}
+
+.arrow:hover {
+    background-color: #194787;
+}
+
+.arrow:hover .arrow-top {
+    background-color: #FFAD00;
+}
+
+.arrow:hover .arrow-bottom {
+    background-color: #FFAD00;
+}
+
+.arrow-up:hover {
+    background-color: #194787;
+}
+
+.arrow-up:hover .arrow-top {
+    background-color: #FFAD00;
+}
+
+.arrow-up:hover .arrow-bottom {
+    background-color: #FFAD00;
+}
+

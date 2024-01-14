@@ -5,11 +5,13 @@ import axios from "axios";
 export const fetchPokemons = () => async (dispatch) => {
     try {
         const response = await axios.get("http://localhost:3001/pokemons");
+        console.log(response);
         dispatch({
             type: actionTypes.FETCH_POKEMONS_SUCCESS,
             payload: response.data,
         });
     } catch (error) {
+        console.log(error);
         dispatch({
             type: actionTypes.FETCH_POKEMONS_FAILURE,
             payload: error.message,
@@ -94,6 +96,7 @@ export const filterPokemonsByType = (dataType) => {
 
 export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
     try {
+        console.log(searchTerm);
         const response = await axios.get(
         `http://localhost:3001/pokemons/search/name?name=${searchTerm}`
         );

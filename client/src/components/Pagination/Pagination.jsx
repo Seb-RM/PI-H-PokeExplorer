@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import PropTypes from "prop-types";
-import "./Pagination.css";
 import { useEffect, useState } from "react";
+
+import PropTypes from "prop-types";
+
+import "./Pagination.css";
+
 const Pagination = ({ pages, setCurrentPage }) => {
 
     const [currentButton, setCurrentButton] = useState(1);
@@ -60,7 +63,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
           onClick={() =>
             setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
           }>
-          Anterior
+          An.
         </button>
         {arrOfCurrButtons.map((item, index) => (
           <button
@@ -79,7 +82,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
               prev >= numberOfPages.length ? prev : prev + 1
             )
           }>
-          Siguiente
+          Sig.
         </button>
       </nav>
     );

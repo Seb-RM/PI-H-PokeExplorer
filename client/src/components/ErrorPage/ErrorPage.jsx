@@ -4,8 +4,10 @@ import "./ErrorPage.css";
 
 const ErrorPage = ({ error }) => {
     return (
-        <div className="error-container">
-        <h1>Error: {error}</h1>
+        <div className="error-content-container">
+            <div className="error-container">
+                <h2>Error: {error}</h2>
+            </div>
         </div>
     );
 };

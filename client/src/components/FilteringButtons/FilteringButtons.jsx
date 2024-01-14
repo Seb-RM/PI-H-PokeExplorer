@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchTypes } from "../../redux/actions/pokemonsActions";
+import "./FilteringButtons.css"
 
 const FilteringButtons = ({ handleFilter}) => {
 
@@ -15,8 +16,8 @@ const FilteringButtons = ({ handleFilter}) => {
     }, [dispatch]);
 
     return (
-        <div>
-            <div>
+        <div className="filtering-container">
+            <div className="by-origin">
                 <label htmlFor="filterByOrigin">Filtrar por Origen:</label>
                 <select
                 name="filterByOrigin"
@@ -27,7 +28,7 @@ const FilteringButtons = ({ handleFilter}) => {
                     <option value="api">API</option>
                 </select>
             </div>
-            <div>
+            <div className="by-type">
                 <label htmlFor="filterByType">Filtrar por Tipo:</label>
                 <select name="filterByType" id="filterByType" onChange={handleFilter}>
                     <option value="all"> Todos </option>

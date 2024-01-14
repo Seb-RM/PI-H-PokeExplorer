@@ -1,14 +1,23 @@
-.error-container {
-    max-width: 80%;
-    min-height: 100%;
-    margin: 0 auto;
-    padding: 5px;
+.error-content-container {
+    flex: 1 1 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    text-align: center;
-    text-wrap: wrap;
+}
+.error-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: 20px 32px 21px 7px rgba(0,0,0,0.1);
     border-radius: 10px;
+}
+
+.error-container h2 {
+    margin: auto;
+    font-size: 2rem;
+    text-align: center;
+    text-wrap: wrap;
 }

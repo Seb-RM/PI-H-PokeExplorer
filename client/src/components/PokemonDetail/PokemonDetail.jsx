@@ -10,10 +10,9 @@ const PokemonDetail = (id) => {
     const { pokemonDetails, loading, error } = useSelector(
         (state) => state.pokemonStates
     );
-
+        console.log(id);
     useEffect(() => {
         dispatch(fetchPokemonDetails(id));
-
     }, [dispatch, id]);
 
     if (loading) {
@@ -23,9 +22,9 @@ const PokemonDetail = (id) => {
     if (error) {
         return <p>Error: {error}</p>;
     }
-    console.log(pokemonDetails)  
+
     return (
-        <>
+        <div className="detail-container">
             <div>
                 <img src={pokemonDetails.imagen} alt="`${pokemonDetails.nombre}`" />
             </div>
@@ -45,7 +44,7 @@ const PokemonDetail = (id) => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
