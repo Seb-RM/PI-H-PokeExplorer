@@ -1,0 +1,177 @@
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 20px 0;
+    box-shadow: 0px 21px 7px 4px rgba(0,0,0,0.3),
+    0px 15px 0px -4px rgba(0,0,0,0.22);
+    gap: 15px;
+    background-color: #C1CFAB;
+}
+
+.detail-image {
+    max-width: 95%;
+    display: flex;
+    justify-content: center;
+    border-radius: 350px;
+    background: linear-gradient(61deg, rgb(131, 84, 252) 11%, rgb(55, 124, 167) 99%);
+}
+
+.detail-image img {
+    margin: 0 auto;
+    max-width: 80%;
+    background-image: url(../../assets/images/detail-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.detail-notes {
+    min-width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.detail-values {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-values h4 {
+    box-shadow: 2px 0px 1px 0px #a1a4fe;
+    border-radius: 3px;
+}
+
+.detail-icon img{
+    display: inline;
+    max-height: 16px;
+}
+
+.detail-types {
+    align-self: center;
+}
+
+.detail-types h4 {
+    box-shadow: 2px 0px 1px 0px #a1a4fe;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.detail-types h3 {
+    width: 75px;
+    border: 2px solid ;
+    border-radius: 5px;
+    padding: 1px 2px;
+    box-shadow: 2px 2px 4px 2px #a1a4fe;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+.normal {
+    background-color: #A8A77A;
+    color: #371750;
+}
+
+.fire {
+    background-color: #EE8130;
+    color: #371750;
+}
+
+.water {
+    background-color: #6390F0;
+    color: #371750;
+}
+
+.electric {
+    background-color: #F7D02C;
+    color: #371750;
+}
+
+.grass {
+    background-color: #7AC74C;
+    color: #371750;
+}
+
+.ice {
+    background-color: #96D9D6;
+    color: #371750;
+}
+
+.fighting {
+    background-color: #C22E28;
+    color: #9EDEF9;
+}
+
+.poison {
+    background-color: #A33EA1;
+    color: #9EDEF9;
+}
+
+.ground {
+    background-color: #E2BF65;
+    color: #371750;
+}
+
+.flying {
+    background-color: #A98FF3;
+    color: #371750;
+}
+
+.psychic {
+    background-color: #F95587;
+    color: #371750;
+}
+
+.bug {
+    background-color: #A6B91A;
+    color: #371750;
+}
+
+.rock {
+    background-color: #B6A136;
+    color: #371750;
+}
+
+.ghost {
+    background-color: #735797;
+    color: #9EDEF9;
+}
+
+.dragon {
+    background-color: #6F35FC;
+    color: #9EDEF9;
+}
+
+.dark {
+    background-color: #705746;
+}
+
+.steel {
+    background-color: #B7B7CE;
+    color: #371750;
+}
+
+.fairy {
+    background-color: #D685AD;
+    color: #371750;
+}
+
+.shadow {
+    background-color: #2e2e2e;
+    color: #9EDEF9;
+}
+
