@@ -1,7 +1,7 @@
 .detail-container {
     display: flex;
     flex-direction: column;
-    margin: 5px 10px;
+    margin: 25px 10px 5px 10px;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -173,5 +173,38 @@
 .shadow {
     background-color: #2e2e2e;
     color: #9EDEF9;
+}
+
+@media (min-width: 950px) {
+    .detail-container {
+        display: grid;
+        grid-template-columns: 55% 45%;
+        border-radius: 5px;
+    }
+
+    .detail-image {
+        max-height: 90%;
+        max-width: 85%;
+        border-radius: 320px;
+        margin-left: 50px;
+    }
+
+    .detail-image img {
+        border-radius: 30%;
+        max-width: 90%;
+    }
+    
+    .detail-notes {
+        display: flex;
+        flex-direction: column;
+        margin: 30px 30px 0;
+        padding: 20px 10px;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .detail-title {
+        justify-content: space-around;
+    }
 }
 

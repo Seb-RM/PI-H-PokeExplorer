@@ -5,15 +5,15 @@ const DetailPage = () => {
     const { id } = useParams();
 
     return (
-    <div>
-        <Link to="/home">
-            <button>Volver</button>
-        </Link>
-        <section>
-            <h1>Esto es sección Details</h1>
-            <PokemonDetail id={ id }/>
-        </section>
-    </div>
+        <div className="detail-page">
+            <Link to="/home" className="comeBack-button">
+                <button>Volver</button>
+            </Link>
+            <section>
+                <PokemonDetail id={id} />
+            </section>
+            <div>{isNaN(id) ? <button className="delete-button">Eliminar Pokemon</button> : null}</div>
+        </div>
     );
 };
 

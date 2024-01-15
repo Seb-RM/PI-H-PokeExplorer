@@ -1,0 +1,63 @@
+.detail-page {
+    background-color: #589E7D;
+    min-height: 100vh;
+}
+.comeBack-button {
+    position: relative;
+    top: 10px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.comeBack-button button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 25px;
+    border: 2px solid #BFE4DE;
+    background-color: #FFD160;
+    cursor: pointer;
+}
+
+.comeBack-button button:hover {
+    border: 2px solid #FFD160;
+    background-color: #BFE4DE;
+}
+
+.comeBack-button button:active {
+    background-color: #daac4a;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.delete-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-45%);
+    top: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 8px 13px;
+    border-radius: 25px;
+    border: 2px solid #BFE4DE;
+    background-color: #FFD160;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px 2px #A29CBB;
+}
+
+.delete-button:hover {
+    border: 2px solid #FFD160;
+    background-color: #BFE4DE;
+}
+
+.delete-button:active {
+    background-color: #daac4a;
+    box-shadow: 0 5px #666;
+    transform: translateX(-46%);
+}
+
+@media (min-width: 950px) {
+    .delete-button {
+        top: 40px;
+    }
+}
