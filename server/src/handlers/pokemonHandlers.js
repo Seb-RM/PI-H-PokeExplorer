@@ -2,7 +2,8 @@ import {
         getPokemons,
         getPokemonsById,
         getPokemonsByName,
-        createPokemon
+        createPokemon,
+        deletePokemon
 } from "../controllers/pokemonControllers.js";
 
 const getPokemonsHandler = async (req, res, next) => {
@@ -65,4 +66,15 @@ const createPokemonHandler = async (req, res, next) => {
         }
 };
 
-export { getPokemonsHandler, getPokemonByIdHandler, getPokemonsByNameHandler, createPokemonHandler };
+const deletePokemonHandler = async (req, res, next) => {
+        try {
+                await deletePokemon(req, res, next);
+        } catch (error) {
+                return res.status(500).json({
+                success: false,
+                error: error.message,
+                });
+        }
+};
+
+export { getPokemonsHandler, getPokemonByIdHandler, getPokemonsByNameHandler, createPokemonHandler, deletePokemonHandler };

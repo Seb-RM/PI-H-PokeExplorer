@@ -257,9 +257,38 @@ const createPokemon = async ({
         }
 };
 
+const deletePokemon = async (req, res, next) => {
+
+    try {
+        const { idpokemon } = req.params;
+        console.log(idpokemon)
+        let data = await Pokemon.destroy({
+            where: {
+                id: idpokemon,
+            },
+        });
+        if (data === 1) {
+            return res.status(200).json({
+                success: true,
+                message: `El Pokemon fue eliminado de la base de datos.`,
+        });
+        }
+        return res.status(200).json({
+            success: false,
+            message: `No se pudo realizar la operación, Pokemon no existente.`,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+};
+
 export { 
     getPokemons, 
     getPokemonsById,
     getPokemonsByName,
-    createPokemon
+    createPokemon,
+    deletePokemon
 };
