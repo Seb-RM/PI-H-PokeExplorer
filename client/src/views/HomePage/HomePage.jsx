@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PokemonCards from "../../components/PokemonCards/PokemonCards.jsx";
-import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName, updateLoadingValue } from "../../redux/actions/pokemonsActions.js";
+import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName, updateLoadingValue, fetchPokemons } from "../../redux/actions/pokemonsActions.js";
 import "./HomePage.css"
 
 const HomePage = () => {
@@ -32,8 +32,16 @@ const HomePage = () => {
     };
 
     const handleSearch = (searchTerm) => {
-        // dispatch(SearchPokemonsByName(searchTerm));
-        // dispatch(updateLoadingValue(true))
+        if (searchTerm.trim() !== "") {
+            dispatch(SearchPokemonsByName(searchTerm));
+            dispatch(updateLoadingValue(true));
+        }
+    };
+
+    const handleClearSearch = () => {
+        dispatch(fetchPokemons());
+        dispatch(updateLoadingValue(true));
+        setSearchTerm("");
     };
 
     return (
@@ -42,13 +50,14 @@ const HomePage = () => {
                 <h1>Pokemon Explorer</h1>
             </header>
             <nav className="nav-container">
-                <Navigation
-                    handleSort={handleSort}
-                    handleFilter={handleFilter}
-                    handleSearch={handleSearch}
-                    setSearchTerm={setSearchTerm}
-                    searchTerm={searchTerm}
-                />
+            <Navigation
+                handleSort={handleSort}
+                handleFilter={handleFilter}
+                handleSearch={handleSearch}
+                setSearchTerm={setSearchTerm}
+                searchTerm={searchTerm}
+                handleClearSearch={handleClearSearch}
+            />
             </nav>
             <section className="pokemon-component">
                 <PokemonCards />

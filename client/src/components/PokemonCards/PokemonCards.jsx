@@ -14,7 +14,6 @@ const PokemonCards = () => {
     const { updatedList, loading, error, filteredPokemons } = useSelector((state) => {
         return state.pokemonStates;
     });
-    
     const [currentPage, setCurrentPage] = useState(1);
     const [ elementsPerPage ] = useState(12);
 

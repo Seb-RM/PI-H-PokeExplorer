@@ -167,7 +167,6 @@ const pokemonReducer = (state = initialState, action) => {
         unfilteredPokemons: action.payload,
       };
     case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS: {
-      console.log(action.payload);
       return {
         ...state,
         pokemonsList: action.payload,
@@ -180,7 +179,7 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload.message,
       };
 
     case actionTypes.UPDATE_LOADING_VALUE:

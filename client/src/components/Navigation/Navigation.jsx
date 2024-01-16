@@ -9,7 +9,7 @@ import FilteringButtons from "../FilteringButtons/FilteringButtons.jsx";
 
 import "./Navigation.css"
 
-const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, searchTerm }) => {
+const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, searchTerm, handleClearSearch }) => {
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 
@@ -37,6 +37,7 @@ const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, sea
           handleSearch={handleSearch}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
+          handleClearSearch={handleClearSearch}
         />
         <Link
           to={"/pokemonForm"}
@@ -54,11 +55,12 @@ const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, sea
 };
 
 Navigation.propTypes = {
-    handleSort: PropTypes.func.isRequired,
-    handleFilter: PropTypes.func.isRequired,
-    handleSearch: PropTypes.func.isRequired,
-    setSearchTerm: PropTypes.func.isRequired,
-    searchTerm: PropTypes.string.isRequired
+  handleSort: PropTypes.func.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  handleClearSearch: PropTypes.func.isRequired,
 };
 
 export default Navigation;

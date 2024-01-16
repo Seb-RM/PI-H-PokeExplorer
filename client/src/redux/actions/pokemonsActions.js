@@ -5,7 +5,6 @@ import axios from "axios";
 export const fetchPokemons = () => async (dispatch) => {
     try {
         const response = await axios.get("http://localhost:3001/pokemons");
-        console.log(response);
         dispatch({
             type: actionTypes.FETCH_POKEMONS_SUCCESS,
             payload: response.data,
@@ -100,10 +99,20 @@ export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
         const response = await axios.get(
         `http://localhost:3001/pokemons/search/name?name=${searchTerm}`
         );
-        dispatch({
-        type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
-        payload: response.data,
-        });
+        if(Array.isArray(response.data)){
+            const filteredPokemons = response.data.filter(
+                (pokemon) => pokemon.nombre.toLowerCase() === searchTerm.toLowerCase()
+            );
+            dispatch({
+                type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
+                payload: filteredPokemons,
+            });
+        } else {
+            dispatch({
+                type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,
+                payload: response.data,
+            });
+        }
     } catch (error) {
         console.log(error.response)
         dispatch({
