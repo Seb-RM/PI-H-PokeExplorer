@@ -1,10 +1,4 @@
-import {
-        getPokemons,
-        getPokemonsById,
-        getPokemonsByName,
-        createPokemon,
-        deletePokemon
-} from "../controllers/pokemonControllers.js";
+import { createPokemon, deletePokemon, getPokemons, getPokemonsById, getPokemonsByName } from "../controllers/pokemonControllers.js";
 
 const getPokemonsHandler = async (req, res, next) => {
         try {

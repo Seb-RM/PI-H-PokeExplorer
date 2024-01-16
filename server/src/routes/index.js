@@ -1,7 +1,7 @@
 import express from "express";
-import PokemonRouter from "./pokemonsRoutes.js";
-import TypeRouter from "./typeRoutes.js"
 
+import TypeRouter from "./typeRoutes.js";
+import PokemonRouter from "./pokemonsRoutes.js";
 
 const router = express.Router();
 

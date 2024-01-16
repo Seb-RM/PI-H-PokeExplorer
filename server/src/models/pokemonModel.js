@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+
 import sequelize from "../DB_connection.js";
 
 const Pokemon = sequelize.define(

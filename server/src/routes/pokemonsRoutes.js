@@ -1,11 +1,6 @@
 import express from "express";
-import {
-    getPokemonsHandler,
-    getPokemonByIdHandler,
-    getPokemonsByNameHandler,
-    createPokemonHandler,
-    deletePokemonHandler
-} from "../handlers/pokemonHandlers.js";
+
+import { createPokemonHandler, deletePokemonHandler, getPokemonByIdHandler, getPokemonsByNameHandler, getPokemonsHandler } from "../handlers/pokemonHandlers.js";
 
 const router = express.Router();
 

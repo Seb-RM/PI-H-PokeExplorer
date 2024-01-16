@@ -1,11 +1,8 @@
-import { Type, Pokemon } from "../models/index.js";
-import {
-    getPokemonsFromApi,
-    getPokemonDetails,
-    getPokemonsFromApiNameControl,
-} from "../utils/pokemonsUtils.js";
 import axios from "axios";
 import { Op } from "sequelize";
+
+import { Pokemon, Type } from "../models/index.js";
+import { getPokemonDetails, getPokemonsFromApi, getPokemonsFromApiNameControl } from "../utils/pokemonsUtils.js";
 
 const getPokemons = async (req, res, next) => {
 
