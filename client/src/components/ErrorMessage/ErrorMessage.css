@@ -5,6 +5,7 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    width: 270px;
 }
 
 .error{
@@ -14,6 +15,7 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    width: 270px;
 }
 
 .success{
@@ -23,6 +25,7 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    width: 270px;
 }
 
 .error-icon {
