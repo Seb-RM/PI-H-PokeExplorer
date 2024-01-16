@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchPokemonDetails } from "../../redux/actions/pokemonsActions.js"
@@ -17,7 +18,7 @@ const PokemonDetail = (id) => {
 
     useEffect(() => {
         dispatch(fetchPokemonDetails(id));
-    }, [dispatch, id]);
+    }, [dispatch]);
 
     if (loading) {
         return <LoadingCards/>;
