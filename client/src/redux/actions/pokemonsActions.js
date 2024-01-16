@@ -126,3 +126,35 @@ export const updateLoadingValue = (newValue) => {
         payload: newValue,
     };
 };
+
+const deletePokemonRequest = () => ({
+    type: actionTypes.DELETE_POKEMON_REQUEST,
+});
+
+const deletePokemonSuccess = () => ({
+    type: actionTypes.DELETE_POKEMON_SUCCESS,
+});
+
+const deletePokemonFailure = (error) => ({
+    type: actionTypes.DELETE_POKEMON_FAILURE,
+    payload: error,
+});
+
+export const deletePokemon = (id) => {
+    return async (dispatch) => {
+        dispatch(deletePokemonRequest());
+        try {
+            const response = await axios.delete(
+            `http://localhost:3001/pokemons/${id}`
+            );
+
+            if (response.data.success) {
+            dispatch(deletePokemonSuccess(response.data.message));
+            } else {
+            dispatch(deletePokemonFailure(response.data.message));
+            }
+        } catch (error) {
+            dispatch(deletePokemonFailure(error.message));
+        }
+    };
+};

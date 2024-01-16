@@ -10,6 +10,12 @@ const initialState = {
   filteredPokemons: [],
   unfilteredPokemons: [],
   updatedList: [],
+  deleteStatus: {
+    deleting: false,
+    success: false,
+    error: null,
+    message: null, 
+  },
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -67,16 +73,13 @@ const pokemonReducer = (state = initialState, action) => {
     }
     case actionTypes.CREATE_POKEMON_FAILURE: {
       const { message } = action.payload;
-
       return {
         ...state,
         serverMessage: message,
       };
     }
-
     case actionTypes.SORT_POKEMONS_BY_NAME: {
       const sortedPokemon = [...state.updatedList];
-
       if (action.payload)
         if (action.payload === "asc") {
           sortedPokemon.sort((a, b) => {
@@ -100,7 +103,6 @@ const pokemonReducer = (state = initialState, action) => {
         updatedList: sortedPokemon,
       };
     }
-
     case actionTypes.SORT_POKEMONS_BY_ATTACK: {
       const sortedPokemon = [...state.updatedList];
       if (action.payload === "asc") {
@@ -119,7 +121,6 @@ const pokemonReducer = (state = initialState, action) => {
         updatedList: sortedPokemon,
       };
     }
-
     case actionTypes.FILTER_POKEMONS_BY_ORIGIN: {
       const origin = action.payload;
       if (origin === "api") {
@@ -143,7 +144,6 @@ const pokemonReducer = (state = initialState, action) => {
         };
       }
     }
-
     case actionTypes.FILTER_POKEMONS_BY_TYPE: {
       const type = action.payload;
 
@@ -160,14 +160,12 @@ const pokemonReducer = (state = initialState, action) => {
         }),
       };
     }
-
     case actionTypes.UPDATE_POKEMONS:
       return {
         ...state,
         updatedList: action.payload,
         unfilteredPokemons: action.payload,
       };
-
     case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS: {
       console.log(action.payload);
       return {
@@ -178,7 +176,6 @@ const pokemonReducer = (state = initialState, action) => {
         error: null,
       };
     }
-
     case actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE:
       return {
         ...state,
@@ -191,10 +188,39 @@ const pokemonReducer = (state = initialState, action) => {
         ...state,
         loading: action.payload,
       };
-
+    case actionTypes.DELETE_POKEMON_REQUEST:
+      return {
+        ...state,
+        deleteStatus: {
+          deleting: true,
+          success: false,
+          error: null,
+          message: null,
+        },
+      };
+      case actionTypes.DELETE_POKEMON_SUCCESS:
+        return {
+          ...state,
+          deleteStatus: {
+            deleting: false,
+            success: true,
+            error: null,
+            message: action.payload,
+          },
+        };
+        case actionTypes.DELETE_POKEMON_FAILURE:
+          return {
+            ...state,
+            deleteStatus: {
+              deleting: false,
+              success: false,
+              error: action.payload,
+              message: null,
+            },
+          };
     default:
       return state;
-  }
+    }
 };
 
 export default pokemonReducer;
