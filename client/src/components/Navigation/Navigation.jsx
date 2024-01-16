@@ -7,7 +7,7 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import SortingButtons from "../SortingButtons/SortingButtons.jsx"
 import FilteringButtons from "../FilteringButtons/FilteringButtons.jsx";
 
-import "./Navigation.css"
+import "./Navigation.css";
 
 const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, searchTerm, handleClearSearch }) => {
 

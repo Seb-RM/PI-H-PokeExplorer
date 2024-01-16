@@ -1,11 +1,14 @@
-import PokemonCard from "../PokemonCard/PokemonCard.jsx"
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchPokemons, updatePokemons } from "../../redux/actions/pokemonsActions.js";
-import "./PokemonCards.css"
-import Pagination from "../Pagination/Pagination.jsx";
-import LoadingCards from "../LoadingCards/LoadingCards.jsx";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import ErrorPage from "../ErrorPage/ErrorPage.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
+import PokemonCard from "../PokemonCard/PokemonCard.jsx"
+import LoadingCards from "../LoadingCards/LoadingCards.jsx";
+import { fetchPokemons, updatePokemons } from "../../redux/actions/pokemonsActions.js";
+
+import "./PokemonCards.css";
 
 const PokemonCards = () => {
 

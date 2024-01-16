@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useDispatch, useSelector } from "react-redux";
-import { createPokemon, fetchTypes } from "../../redux/actions/pokemonsActions.js";
 import { useEffect, useState } from "react";
-import validateForm from "../../utils/validateForm.js";
-import { INITIAL_ERRORS, INITIAL_POKEMON_DATA } from "../../constants/formConstants.js";
-import { formatearAlturaPeso, formatearNombre } from "../../utils/formatData.js";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import validateForm from "../../utils/validateForm.js";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import { formatearAlturaPeso, formatearNombre } from "../../utils/formatData.js";
+import { createPokemon, fetchTypes } from "../../redux/actions/pokemonsActions.js";
+import { INITIAL_ERRORS, INITIAL_POKEMON_DATA } from "../../constants/formConstants.js";
 
 import "./CreationForm.css";
 

@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchPokemonDetails } from "../../redux/actions/pokemonsActions.js"
-import { useEffect } from "react";
-import LoadingCards from "../LoadingCards/LoadingCards.jsx";
 import ErrorPage from "../ErrorPage/ErrorPage.jsx";
-import "./PokemonDetail.css"
-import capitalizeWords  from "../../utils/capitalizeWords.js";
-import formatNumberValue from "../../utils/formatNumberValues.js"
+import LoadingCards from "../LoadingCards/LoadingCards.jsx";
 import formatIdNumber from "../../utils/formatIdNumbers.js";
+import capitalizeWords from "../../utils/capitalizeWords.js";
+import formatNumberValue from "../../utils/formatNumberValues.js"
+import { fetchPokemonDetails } from "../../redux/actions/pokemonsActions.js"
+
+import "./PokemonDetail.css"
 
 const PokemonDetail = (id) => {
     

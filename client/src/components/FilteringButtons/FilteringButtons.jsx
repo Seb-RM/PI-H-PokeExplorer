@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchTypes } from "../../redux/actions/pokemonsActions";
-import "./FilteringButtons.css"
+
+import "./FilteringButtons.css";
 
 const FilteringButtons = ({ handleFilter}) => {
 

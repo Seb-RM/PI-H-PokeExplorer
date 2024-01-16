@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 import capitalizeWords from "../../utils/capitalizeWords.js"
 
-import "./PokemonCard.css"
+import "./PokemonCard.css";
 
 const PokemonCard = ({ id, nombre, imagen, tipos }) => {
 

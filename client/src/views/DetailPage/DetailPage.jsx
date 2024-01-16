@@ -1,15 +1,17 @@
-import { Link, useParams } from "react-router-dom";
-import PokemonDetail from "../../components/PokemonDetail/PokemonDetail.jsx";
-import "./DetailPage.css"
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import { deletePokemon } from "../../redux/actions/pokemonsActions.js";
+import PokemonDetail from "../../components/PokemonDetail/PokemonDetail.jsx";
+
+import "./DetailPage.css"
 
 
 
 const DetailPage = () => {
     const { id } = useParams();
-
 
         const dispatch = useDispatch();
         const deleteStatus = useSelector((state) => state.pokemonStates);

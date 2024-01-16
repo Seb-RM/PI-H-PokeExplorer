@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
-import okIcon from "../../assets/icons/thumbs-up-solid.svg";
+
 import errorIcon from "../../assets/icons/xmark-solid.svg";
+import okIcon from "../../assets/icons/thumbs-up-solid.svg";
 import defaultIcon from "../../assets/icons/asterisk-solid.svg";
-import "./ErrorMessage.css"
+
+import "./ErrorMessage.css";
 
 const ErrorMessage = ({ errors }) => {
 

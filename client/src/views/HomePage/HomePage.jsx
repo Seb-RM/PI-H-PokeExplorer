@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import PokemonCards from "../../components/PokemonCards/PokemonCards.jsx";
-import { filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName, updateLoadingValue, fetchPokemons } from "../../redux/actions/pokemonsActions.js";
+import { fetchPokemons, filterPokemonsByOrigin, filterPokemonsByType, SearchPokemonsByName, sortPokemonsByAttack, sortPokemonsByName, updateLoadingValue } from "../../redux/actions/pokemonsActions.js";
+
 import "./HomePage.css"
 
 const HomePage = () => {
