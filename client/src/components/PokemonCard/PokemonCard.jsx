@@ -12,7 +12,10 @@ const PokemonCard = ({ id, nombre, imagen, tipos }) => {
     return (
         <>
             <div className="cardContainer">
-                <Link to={`/detail/${id}`} style={{ textDecoration: "none" }}>
+                <Link
+                    to={`/detail/${id}`}
+                    style={{ textDecoration: "none" }}
+                    reloadDocument>
                     <img src={imagen} alt="`${nombre}`" className="cardImage" />
                     <h3 className="card-name">{capitalizedName}</h3>
                     <ul className="cardTypes">

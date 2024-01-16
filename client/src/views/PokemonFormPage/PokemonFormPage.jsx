@@ -8,7 +8,7 @@ const PokemonFormPage = () => {
     return (
         <div className="formPage-container">
             <div>
-                <Link to="/home">
+                <Link to="/home" reloadDocument>
                     <button className="form-return-button">Volver</button>
                 </Link>
             </div>

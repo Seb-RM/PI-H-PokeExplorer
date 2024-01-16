@@ -26,7 +26,7 @@ const DetailPage = () => {
 
     return (
         <div className="detail-page">
-            <Link to="/home" className="comeBack-button">
+            <Link to="/home" className="comeBack-button" reloadDocument>
                 <button>Volver</button>
             </Link>
             <section>
@@ -35,7 +35,7 @@ const DetailPage = () => {
             <div>
                 {isNaN(id) ? (
                     <button className="delete-button" onClick={handleDelete}>
-                        Eliminar Pokemon
+                    Eliminar Pokemon
                     </button>
                 ) : null}
                 {deleteStatus.deleting && (
@@ -46,7 +46,7 @@ const DetailPage = () => {
                 )}
                 {deleteStatus.error && (
                     <h3 className="delete-message">
-                        Error al eliminar el Pokémon: {deleteStatus.error}
+                    Error al eliminar el Pokémon: {deleteStatus.error}
                     </h3>
                 )}
             </div>

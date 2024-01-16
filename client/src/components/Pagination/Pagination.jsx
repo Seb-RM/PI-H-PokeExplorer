@@ -54,7 +54,11 @@ const Pagination = ({ pages, setCurrentPage }) => {
 
         setArrOfCurrButtons(tempNumberOfPages);
         setCurrentPage(currentButton);
-    }, [currentButton] );
+
+        const timerId = setTimeout(() => {}, 0);
+        return () => clearTimeout(timerId);
+
+    }, [currentButton, arrOfCurrButtons] );
 
     return (
       <nav className="pagination-container">
