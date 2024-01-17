@@ -140,8 +140,9 @@ const deletePokemonRequest = () => ({
     type: actionTypes.DELETE_POKEMON_REQUEST,
 });
 
-const deletePokemonSuccess = () => ({
+const deletePokemonSuccess = (message) => ({
     type: actionTypes.DELETE_POKEMON_SUCCESS,
+    payload: message,
 });
 
 const deletePokemonFailure = (error) => ({

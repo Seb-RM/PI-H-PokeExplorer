@@ -197,7 +197,7 @@ const pokemonReducer = (state = initialState, action) => {
           message: null,
         },
       };
-      case actionTypes.DELETE_POKEMON_SUCCESS:
+      case actionTypes.DELETE_POKEMON_SUCCESS:{
         return {
           ...state,
           deleteStatus: {
@@ -207,6 +207,7 @@ const pokemonReducer = (state = initialState, action) => {
             message: action.payload,
           },
         };
+      }
         case actionTypes.DELETE_POKEMON_FAILURE:
           return {
             ...state,

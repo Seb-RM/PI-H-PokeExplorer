@@ -17,7 +17,12 @@ const Pagination = ({ pages, setCurrentPage }) => {
     }
 
     useEffect(() =>{
-        let tempNumberOfPages = [...arrOfCurrButtons];
+
+        let timerId;
+
+        const updateState = () => {
+
+        let tempNumberOfPages = [];
 
         let dotsInitial = "...";
         let dotsLeft = "... ";
@@ -54,9 +59,10 @@ const Pagination = ({ pages, setCurrentPage }) => {
 
         setArrOfCurrButtons(tempNumberOfPages);
         setCurrentPage(currentButton);
+      }
+        timerId = setTimeout(updateState, 0);
 
-        const timerId = setTimeout(() => {}, 0);
-        return () => clearTimeout(timerId);
+    return () => clearTimeout(timerId);
 
     }, [currentButton, arrOfCurrButtons] );
 
