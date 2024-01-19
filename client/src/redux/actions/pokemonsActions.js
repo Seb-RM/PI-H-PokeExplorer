@@ -95,7 +95,6 @@ export const filterPokemonsByType = (dataType) => {
 
 export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
     try {
-        console.log(searchTerm);
         const response = await axios.get(
         `http://localhost:3001/pokemons/search/name?name=${searchTerm}`
         );
@@ -103,10 +102,19 @@ export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
             const filteredPokemons = response.data.filter(
                 (pokemon) => pokemon.nombre.toLowerCase() === searchTerm.toLowerCase()
             );
-            dispatch({
+
+            if(filteredPokemons.length >=1) {
+                dispatch({
                 type: actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS,
                 payload: filteredPokemons,
-            });
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,
+                    payload: {"message": "No se encontraron Pokemons con ese nombre."},
+                });
+            }
+        
         } else {
             dispatch({
                 type: actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE,

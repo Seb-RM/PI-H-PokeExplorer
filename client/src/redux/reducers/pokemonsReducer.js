@@ -177,12 +177,12 @@ const pokemonReducer = (state = initialState, action) => {
         error: null,
       };
     }
-    case actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE:
+    case actionTypes.SEARCH_POKEMONS_BY_NAME_FAILURE:  {
       return {
         ...state,
         loading: false,
         error: action.payload.message,
-      };
+      };}
 
     case actionTypes.UPDATE_LOADING_VALUE:
       return {
