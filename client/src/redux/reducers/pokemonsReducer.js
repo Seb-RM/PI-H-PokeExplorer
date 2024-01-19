@@ -9,6 +9,7 @@ const initialState = {
   serverMessage: "",
   filteredPokemons: [],
   unfilteredPokemons: [],
+  filteredByOrigin:[],
   updatedList: [],
   deleteStatus: {
     deleting: false,
@@ -126,14 +127,14 @@ const pokemonReducer = (state = initialState, action) => {
       if (origin === "api") {
         return {
           ...state,
-          filteredPokemons: state.updatedList.filter(
+          filteredByOrigin: state.pokemonsList.filter(
             (pokemon) => !isNaN(pokemon.id)
           ),
         };
       } else if (origin === "database") {
         return {
           ...state,
-          filteredPokemons: state.updatedList.filter((pokemon) =>
+          filteredByOrigin: state.pokemonsList.filter((pokemon) =>
             isNaN(pokemon.id)
           ),
         };
@@ -166,6 +167,7 @@ const pokemonReducer = (state = initialState, action) => {
         updatedList: action.payload,
         unfilteredPokemons: action.payload,
       };
+
     case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS: {
       return {
         ...state,

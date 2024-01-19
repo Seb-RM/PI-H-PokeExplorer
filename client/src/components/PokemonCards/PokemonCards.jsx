@@ -30,6 +30,10 @@ const PokemonCards = () => {
       dispatch(updatePokemons(filteredPokemons));
     }, [dispatch, filteredPokemons]);
 
+    useEffect(() => {
+        dispatch(updatePokemons(filteredPokemons));
+    }, [dispatch, filteredPokemons]);
+    
     if (loading) {
     return <LoadingCards/>
     }
