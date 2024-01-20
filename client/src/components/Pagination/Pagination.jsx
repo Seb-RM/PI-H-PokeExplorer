@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import  { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
 
 import "./Pagination.css";
 
-const Pagination = ({ pages, setCurrentPage }) => {
+const Pagination = ({ pages, currentPage, setCurrentPage }) => {
 
-    const [currentButton, setCurrentButton] = useState(1);
-    const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
+  // const [currentButton, setCurrentButton] = useState(1);
+  const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
     const numberOfPages = [];
 
@@ -30,14 +30,14 @@ const Pagination = ({ pages, setCurrentPage }) => {
 
         if (numberOfPages.length < 6) {
           tempNumberOfPages = numberOfPages;
-        } else if (currentButton >= 1 && currentButton <= 3) {
+        } else if (currentPage >= 1 && currentPage <= 3) {
           tempNumberOfPages = [1, 2, 3, 4, dotsInitial, numberOfPages.length];
-        } else if (currentButton === 4) {
+        } else if (currentPage === 4) {
           const sliced = numberOfPages.slice(0, 5);
           tempNumberOfPages = [...sliced, dotsInitial, numberOfPages.length];
-        } else if (currentButton > 4 && currentButton < numberOfPages.length - 2) {
-          const sliced1 = numberOfPages.slice(currentButton - 2, currentButton);
-          const sliced2 = numberOfPages.slice(currentButton, currentButton + 1);
+        } else if (currentPage > 4 && currentPage < numberOfPages.length - 2) {
+          const sliced1 = numberOfPages.slice(currentPage - 2, currentPage);
+          const sliced2 = numberOfPages.slice(currentPage, currentPage + 1);
           tempNumberOfPages = [
             1,
             dotsLeft,
@@ -46,50 +46,56 @@ const Pagination = ({ pages, setCurrentPage }) => {
             dotsRight,
             numberOfPages.length,
           ];
-        } else if (currentButton > numberOfPages.length - 3) {
+        } else if (currentPage > numberOfPages.length - 3) {
           const sliced = numberOfPages.slice(numberOfPages.length - 4); 
           tempNumberOfPages = [1, dotsLeft, ...sliced];
-        } else if (currentButton === dotsInitial) {
-          setCurrentButton(arrOfCurrButtons[arrOfCurrButtons.length - 3] + 1);
-        } else if (currentButton === dotsRight) {
-          setCurrentButton(arrOfCurrButtons[3] + 2);
-        } else if (currentButton === dotsLeft) {
-          setCurrentButton(arrOfCurrButtons[3] - 2);
+        } else if (currentPage === dotsInitial) {
+          setCurrentPage(arrOfCurrButtons[arrOfCurrButtons.length - 3] + 1);
+        } else if (currentPage === dotsRight) {
+          setCurrentPage(arrOfCurrButtons[3] + 2);
+        } else if (currentPage === dotsLeft) {
+          setCurrentPage(arrOfCurrButtons[3] - 2);
         }
 
         setArrOfCurrButtons(tempNumberOfPages);
-        setCurrentPage(currentButton);
+        // setCurrentPage(currentButton);
       }
         timerId = setTimeout(updateState, 0);
 
     return () => clearTimeout(timerId);
 
-    }, [currentButton, arrOfCurrButtons] );
+    }, [currentPage, arrOfCurrButtons] );
+
+    console.log(currentPage);
+  // useEffect(() => {
+  //   setCurrentButton(currentPage);
+  //   console.log(currentPage)
+  // }, [currentPage]);
 
     return (
       <nav className="pagination-container">
         <button
-          className={`${currentButton === 1 ? "disabled" : "first-last"}`}
+          className={`${currentPage === 1 ? "disabled" : "first-last"}`}
           onClick={() =>
-            setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
+            setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1))
           }>
           An.
         </button>
         {arrOfCurrButtons.map((item, index) => (
           <button
             key={index}
-            className={`${currentButton === item ? "active" : ""}`}
-            onClick={() => setCurrentButton(item)}>
+            className={`${currentPage === item ? "active" : ""}`}
+            onClick={() => setCurrentPage(item)}>
             {item}
           </button>
         ))}
         <button
           className={`${
-            currentButton === numberOfPages.length ? "disabled" : "first-last"
+            currentPage === pages ? "disabled" : "first-last"
           }`}
           onClick={() =>
-            setCurrentButton((prev) =>
-              prev >= numberOfPages.length ? prev : prev + 1
+            setCurrentPage((prev) =>
+              prev >= pages ? prev : prev + 1
             )
           }>
           Sig.
@@ -100,6 +106,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
 
 Pagination.propTypes = {
   pages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
 };
 
