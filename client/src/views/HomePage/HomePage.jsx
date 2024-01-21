@@ -14,15 +14,20 @@ const HomePage = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
 
-    const handleSort = (event) => {
-        const sortName = event.target.getAttribute("name");
-        if (sortName === "sortByName") {
-            dispatch(sortPokemonsByName(event.target.value));
-        } else {
-            dispatch(sortPokemonsByAttack(event.target.value));
-        }
-    };
+    // const handleSort = (event) => {
+    //     console.log(event)
+    //     const sortName = event.target.getAttribute("name");
+    //     console.log(sortName)
+    //     if (sortName === "sortByName") {
+    //         dispatch(sortPokemonsByName(event));
+    //     } else {
+    //         dispatch(sortPokemonsByAttack(event.target.value));
+    //     }
+    // };
 
+    const handleSortByName = (event) => {
+        dispatch(sortPokemonsByName(event));
+    }
     const handleFilter = (event) => {
         const filterOrigin = event.target.getAttribute("name");
         if (filterOrigin === "filterByOrigin") {
@@ -52,7 +57,7 @@ const HomePage = () => {
             </header>
             <nav className="nav-container">
             <Navigation
-                handleSort={handleSort}
+                handleSortByName={handleSortByName}
                 handleFilter={handleFilter}
                 handleSearch={handleSearch}
                 setSearchTerm={setSearchTerm}

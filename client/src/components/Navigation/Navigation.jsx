@@ -9,7 +9,7 @@ import FilteringButtons from "../FilteringButtons/FilteringButtons.jsx";
 
 import "./Navigation.css";
 
-const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, searchTerm, handleClearSearch }) => {
+const Navigation = ({ handleSortByName, handleFilter, handleSearch, setSearchTerm, searchTerm, handleClearSearch }) => {
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 
@@ -32,7 +32,7 @@ const Navigation = ({ handleSort, handleFilter, handleSearch, setSearchTerm, sea
     <div className="option-container">
       <div className={visibilityClass}>
         <FilteringButtons handleFilter={handleFilter} />
-        <SortingButtons handleSort={handleSort} />
+        <SortingButtons handleSortByName={handleSortByName} />
         <SearchBar
           handleSearch={handleSearch}
           setSearchTerm={setSearchTerm}

@@ -9,7 +9,6 @@ const initialState = {
   serverMessage: "",
   filteredPokemons: [],
   unfilteredPokemons: [],
-  filteredByOrigin:[],
   updatedList: [],
   deleteStatus: {
     deleting: false,
@@ -81,12 +80,13 @@ const pokemonReducer = (state = initialState, action) => {
     }
     case actionTypes.SORT_POKEMONS_BY_NAME: {
       const sortedPokemon = [...state.updatedList];
+      console.log(sortedPokemon)
       if (action.payload)
         if (action.payload === "asc") {
           sortedPokemon.sort((a, b) => {
             const nameA = a.nombre.toLowerCase();
             const nameB = b.nombre.toLowerCase();
-
+            console.log(sortedPokemon)
             if (nameA > nameB) return 1;
             else return -1;
           });
@@ -94,7 +94,7 @@ const pokemonReducer = (state = initialState, action) => {
           sortedPokemon.sort((a, b) => {
             const nameA = a.nombre.toLowerCase();
             const nameB = b.nombre.toLowerCase();
-
+            console.log(sortedPokemon);
             if (nameA < nameB) return 1;
             else return -1;
           });
@@ -127,14 +127,14 @@ const pokemonReducer = (state = initialState, action) => {
       if (origin === "api") {
         return {
           ...state,
-          filteredByOrigin: state.pokemonsList.filter(
+          filteredPokemons: state.updatedList.filter(
             (pokemon) => !isNaN(pokemon.id)
           ),
         };
       } else if (origin === "database") {
         return {
           ...state,
-          filteredByOrigin: state.pokemonsList.filter((pokemon) =>
+          filteredPokemons: state.updatedList.filter((pokemon) =>
             isNaN(pokemon.id)
           ),
         };
@@ -165,7 +165,6 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         updatedList: action.payload,
-        unfilteredPokemons: action.payload,
       };
 
     case actionTypes.SEARCH_POKEMONS_BY_NAME_SUCCESS: {

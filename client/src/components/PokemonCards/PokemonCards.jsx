@@ -22,7 +22,8 @@ const PokemonCards = () => {
   const  [currentPage, setCurrentPage] = useState(1);
   const [ elementsPerPage ] = useState(12);
 
-  
+  console.log(updatedList);
+  console.log(filteredPokemons);
   useEffect(() => {
     dispatch(fetchPokemons());
   }, [dispatch]);
@@ -30,8 +31,8 @@ const PokemonCards = () => {
   useEffect(() => {
     dispatch(updatePokemons(filteredPokemons.length > 0 ? filteredPokemons : updatedList));
     setCurrentPage(1);  
-    console.log("pkcards useffect: "+ currentPage)
-  }, [dispatch, filteredPokemons, updatedList]);
+    console.log("pkcards useEffect: "+ currentPage)
+  }, [dispatch, filteredPokemons]);
   
   if (loading) {
     return <LoadingCards/>
@@ -41,7 +42,7 @@ const PokemonCards = () => {
     return <ErrorPage error={error}/>
   }
   
-  const pokemonsList = filteredPokemons.length > 0 ? filteredPokemons : updatedList;
+  const pokemonsList =  updatedList;
 
   const totalElements = pokemonsList.length;
   const totalPages = Math.ceil(totalElements / elementsPerPage);
