@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./SortingButtons.css"
 
 const SortingButtons = ({ handleSortByName, handleSortByAttack, sortingButtonClass }) => {
-  console.log(sortingButtonClass)
     return (
       <div className="sorting-container">
         <div className="by-name">
