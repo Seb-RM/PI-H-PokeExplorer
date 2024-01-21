@@ -9,7 +9,15 @@ import FilteringButtons from "../FilteringButtons/FilteringButtons.jsx";
 
 import "./Navigation.css";
 
-const Navigation = ({ handleSortByName, handleFilter, handleSearch, setSearchTerm, searchTerm, handleClearSearch }) => {
+const Navigation = ({ handleSortByName,
+                      handleSortByAttack, 
+                      handleFilter, 
+                      handleSearch, 
+                      setSearchTerm, 
+                      searchTerm, 
+                      handleClearSearch,
+                      handleButtonClass,
+                      sortingButtonClass}) => {
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 
@@ -32,7 +40,10 @@ const Navigation = ({ handleSortByName, handleFilter, handleSearch, setSearchTer
     <div className="option-container">
       <div className={visibilityClass}>
         <FilteringButtons handleFilter={handleFilter} />
-        <SortingButtons handleSortByName={handleSortByName} />
+        <SortingButtons handleSortByName={handleSortByName}
+                        handleSortByAttack={handleSortByAttack} 
+                        handleButtonClass={handleButtonClass}
+                        sortingButtonClass={sortingButtonClass}/>
         <SearchBar
           handleSearch={handleSearch}
           setSearchTerm={setSearchTerm}
@@ -55,12 +66,15 @@ const Navigation = ({ handleSortByName, handleFilter, handleSearch, setSearchTer
 };
 
 Navigation.propTypes = {
-  handleSort: PropTypes.func.isRequired,
+  handleSortByName: PropTypes.func.isRequired,
+  handleSortByAttack: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   setSearchTerm: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,
   handleClearSearch: PropTypes.func.isRequired,
+  handleButtonClass: PropTypes.func.isRequired,
+  sortingButtonClass: PropTypes.object.isRequired,
 };
 
 export default Navigation;

@@ -14,6 +14,12 @@ const HomePage = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
 
+    const [ sortingButtonClass, setSortingButtonClass] =useState({  sortNameAsc: "",
+                                                                    sortNameDesc: "",
+                                                                    sortAttackAsc: "",
+                                                                    sortAttackDesc: ""
+                                                                })
+
     // const handleSort = (event) => {
     //     console.log(event)
     //     const sortName = event.target.getAttribute("name");
@@ -26,8 +32,47 @@ const HomePage = () => {
     // };
 
     const handleSortByName = (event) => {
+
+        if(event==="asc"){
+            setSortingButtonClass({ 
+                sortNameAsc: "sortB-active", 
+                sortNameDesc: "",
+                sortAttackAsc: "",
+                sortAttackDesc: ""
+            });
+        }
+        if (event === "desc") {
+            setSortingButtonClass({
+                sortNameAsc: "",
+                sortNameDesc: "sortB-active",
+                sortAttackAsc: "",
+                sortAttackDesc: ""
+            });
+        }
         dispatch(sortPokemonsByName(event));
     }
+
+    const handleSortByAttack = (event) => {
+
+        if (event === "asc") {
+            setSortingButtonClass({
+                sortNameAsc: "",
+                sortNameDesc: "",
+                sortAttackAsc: "sortB-active",
+                sortAttackDesc: ""
+            });
+        }
+        if (event === "desc") {
+            setSortingButtonClass({
+                sortNameAsc: "",
+                sortNameDesc: "",
+                sortAttackAsc: "",
+                sortAttackDesc: "sortB-active"
+            });
+        }
+        dispatch(sortPokemonsByAttack(event));
+    };
+
     const handleFilter = (event) => {
         const filterOrigin = event.target.getAttribute("name");
         if (filterOrigin === "filterByOrigin") {
@@ -35,6 +80,7 @@ const HomePage = () => {
         } else {
             dispatch(filterPokemonsByType(event.target.value));
         }
+        setSortingButtonClass({sortNameAsc:"", sortNameDesc:"", sortAttackAsc:"", sortAttackDesc:""})
     };
 
     const handleSearch = (searchTerm) => {
@@ -50,24 +96,31 @@ const HomePage = () => {
         setSearchTerm("");
     };
 
+    const handleButtonClass = (event) => {
+        console.log(event);
+    }
+
     return (
         <div className="homeContainer">
-            <header className="page-title">
-                <h1>Pokemon Explorer</h1>
-            </header>
-            <nav className="nav-container">
+        <header className="page-title">
+            <h1>Pokemon Explorer</h1>
+        </header>
+        <nav className="nav-container">
             <Navigation
-                handleSortByName={handleSortByName}
-                handleFilter={handleFilter}
-                handleSearch={handleSearch}
-                setSearchTerm={setSearchTerm}
-                searchTerm={searchTerm}
-                handleClearSearch={handleClearSearch}
+            handleSortByName={handleSortByName}
+            handleSortByAttack={handleSortByAttack}
+            handleFilter={handleFilter}
+            handleSearch={handleSearch}
+            setSearchTerm={setSearchTerm}
+            searchTerm={searchTerm}
+            handleClearSearch={handleClearSearch}
+            handleButtonClass={handleButtonClass}
+            sortingButtonClass={sortingButtonClass}
             />
-            </nav>
-            <section className="pokemon-component">
-                <PokemonCards />
-            </section>
+        </nav>
+        <section className="pokemon-component">
+            <PokemonCards />
+        </section>
         </div>
     );
 };

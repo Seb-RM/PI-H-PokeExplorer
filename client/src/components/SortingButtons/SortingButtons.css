@@ -22,3 +22,36 @@
     flex-direction: column;
     align-items: center;
 }
+
+.sorting-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.sorting-button {
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+    background-color:  #EDF6E9;
+    color: #6096AA;
+    cursor: pointer;
+    box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.1);
+}
+
+.sortB-active {
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 12px;
+    border: 1px solid #FFAD00;
+    background-color:  #FFD160;
+    color: #3B4CCA;
+    cursor: pointer;
+    box-shadow: 3px 3px 1px 2px rgba(124, 110, 187, 0.3);
+}
