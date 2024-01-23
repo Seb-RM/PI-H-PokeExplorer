@@ -124,30 +124,31 @@ const pokemonReducer = (state = initialState, action) => {
     }
     case actionTypes.FILTER_POKEMONS_BY_ORIGIN: {
       const origin = action.payload;
+      console.log(origin)
       if (origin === "api") {
         return {
           ...state,
           filteredPokemons: state.updatedList.filter(
             (pokemon) => !isNaN(pokemon.id)
-          ),
-        };
-      } else if (origin === "database") {
-        return {
-          ...state,
-          filteredPokemons: state.updatedList.filter((pokemon) =>
+            ),
+          };
+        } else if (origin === "database") {
+          return {
+            ...state,
+            filteredPokemons: state.updatedList.filter((pokemon) =>
             isNaN(pokemon.id)
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          filteredPokemons: state.pokemonsList,
-        };
-      }
+            ),
+          };
+        } else {
+          return {
+            ...state,
+            filteredPokemons: state.pokemonsList,
+          };
+        }
     }
     case actionTypes.FILTER_POKEMONS_BY_TYPE: {
       const type = action.payload;
-
+        console.log(type);
       if (type === "all") {
         return {
           ...state,

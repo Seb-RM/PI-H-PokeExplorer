@@ -17,7 +17,7 @@ const Navigation = ({ handleSortByName,
                       searchTerm, 
                       handleClearSearch,
                       handleButtonClass,
-                      sortingButtonClass}) => {
+                      sortingButtonClass,}) => {
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 

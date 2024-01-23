@@ -13,13 +13,11 @@ const HomePage = () => {
     const dispatch = useDispatch();
 
     const [searchTerm, setSearchTerm] = useState("");
-
     const [ sortingButtonClass, setSortingButtonClass] =useState({  sortNameAsc: "",
                                                                     sortNameDesc: "",
                                                                     sortAttackAsc: "",
                                                                     sortAttackDesc: ""
-                                                                })
-
+                                                                });                                                        
     // const handleSort = (event) => {
     //     console.log(event)
     //     const sortName = event.target.getAttribute("name");
@@ -32,7 +30,6 @@ const HomePage = () => {
     // };
 
     const handleSortByName = (event) => {
-
         if(event==="asc"){
             setSortingButtonClass({ 
                 sortNameAsc: "sortB-active", 
@@ -53,7 +50,6 @@ const HomePage = () => {
     }
 
     const handleSortByAttack = (event) => {
-
         if (event === "asc") {
             setSortingButtonClass({
                 sortNameAsc: "",
@@ -73,12 +69,12 @@ const HomePage = () => {
         dispatch(sortPokemonsByAttack(event));
     };
 
-    const handleFilter = (event) => {
-        const filterOrigin = event.target.getAttribute("name");
-        if (filterOrigin === "filterByOrigin") {
-            dispatch(filterPokemonsByOrigin(event.target.value));
+    const handleFilter = (option) => {
+        // const filterOrigin = event.target.getAttribute("name");
+        if (option === "api" || option === "database") {
+            dispatch(filterPokemonsByOrigin(option));
         } else {
-            dispatch(filterPokemonsByType(event.target.value));
+            dispatch(filterPokemonsByType(option));
         }
         setSortingButtonClass({sortNameAsc:"", sortNameDesc:"", sortAttackAsc:"", sortAttackDesc:""})
     };

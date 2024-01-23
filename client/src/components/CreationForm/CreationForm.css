@@ -103,3 +103,10 @@
     background-color: #B3B8BB;
     color: #B7C5D2;
 }
+
+.server-message {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #691fa2;
+    text-decoration: underline;
+}

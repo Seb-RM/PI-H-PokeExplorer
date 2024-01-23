@@ -155,7 +155,7 @@ const CreationForm = () => {
         setFormSubmitted(false);
       }, 5000);
     } catch (error) {
-      setErrors({ serverError: "Error al enviar el formulario" });
+      setErrors({ serverError: "Error al enviar el formulario." });
     }
   };
 
@@ -301,6 +301,7 @@ const CreationForm = () => {
                   type="checkbox"
                   id={type.id}
                   name="tipos"
+                  defaultChecked={false}
                   value={type.nombre}
                   onChange={handleInputChange}
                 />
@@ -312,7 +313,7 @@ const CreationForm = () => {
         <button type="submit" disabled={!isFormValid} className="submit-button">
           Crear Pokemon
         </button>
-        {formSubmitted && <p>{serverMessage}</p>}
+        {formSubmitted && <p className="server-message">{serverMessage}</p>}
       </form>
     </div>
   );

@@ -52,7 +52,6 @@ export const fetchTypes = () => async (dispatch) => {
 export const createPokemon = (pokemonData) => async (dispatch) => {
     try {
         const response = await axios.post("http://localhost:3001/pokemons",pokemonData);
-        console.log(response.data)
         dispatch({
         type: actionTypes.CREATE_POKEMON_SUCCESS,
         payload: response.data,
@@ -80,6 +79,7 @@ export const sortPokemonsByAttack = (order) => {
 };
 
 export const filterPokemonsByOrigin = (dataOrigin) =>  {
+    console.log(dataOrigin)
     return {
         type: actionTypes.FILTER_POKEMONS_BY_ORIGIN,
         payload: dataOrigin,

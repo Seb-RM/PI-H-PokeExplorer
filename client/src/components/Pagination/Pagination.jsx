@@ -66,7 +66,6 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
 
     }, [currentPage, arrOfCurrButtons] );
 
-    console.log(currentPage);
   // useEffect(() => {
   //   setCurrentButton(currentPage);
   //   console.log(currentPage)

@@ -21,3 +21,20 @@
     flex-direction: column;
     align-items: center;
 }
+
+.origin-filter-values {
+    border: 2px solid black;
+    margin-top: 2px;
+    min-height: 1rem;
+}
+
+.filter-options:disabled {
+    color: #DEE4E6;
+    background-color: #B7C5D2;
+    cursor: none;
+}
+
+.filter-options:checked {
+    background-color: #F1E5D8;
+    color: #FE4B00;
+}
