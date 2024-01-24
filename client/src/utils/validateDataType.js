@@ -1,7 +1,4 @@
 const validateType = (value, expectedType) => {
-    console.log(value)
-    console.log(expectedType)
-    console.log(typeof value)
     switch (expectedType) {
         case "string":
         return typeof value === "string";
