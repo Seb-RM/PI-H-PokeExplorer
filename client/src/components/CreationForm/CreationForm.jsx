@@ -12,6 +12,7 @@ import { INITIAL_ERRORS, INITIAL_POKEMON_DATA } from "../../constants/formConsta
 import "./CreationForm.css";
 
 const CreationForm = () => {
+  
   const dispatch = useDispatch();
 
   const { types } = useSelector((state) => state.pokemonStates);
