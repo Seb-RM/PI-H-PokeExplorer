@@ -302,7 +302,7 @@ const CreationForm = () => {
                   type="checkbox"
                   id={type.id}
                   name="tipos"
-                  defaultChecked={false}
+                  defaultChecked={checkedBox}
                   value={type.nombre}
                   onChange={handleInputChange}
                 />

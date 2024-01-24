@@ -205,6 +205,10 @@ const validateForm = (name, pokemonData) => {
         (fieldErrors.message = "Por favor indica de que tipo es tu Pokemon."),
           (fieldErrors.tipo = "default");
         fieldErrors.icon = "default";
+      } else if (!validateType(pokemonData, "checkbox")) {
+        fieldErrors.message = `Tipo de dato incorrecto para ${name}.`;
+        fieldErrors.tipo = "error";
+        fieldErrors.icon = "error";
       } else if (pokemonData.length > 2) {
         fieldErrors.message = "No puedes indicar mas de 2 tipos distintos.";
         fieldErrors.tipo = "error";
