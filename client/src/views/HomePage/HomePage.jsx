@@ -18,17 +18,6 @@ const HomePage = () => {
                                                                     sortAttackAsc: "",
                                                                     sortAttackDesc: ""
                                                                 });                                                        
-    // const handleSort = (event) => {
-    //     console.log(event)
-    //     const sortName = event.target.getAttribute("name");
-    //     console.log(sortName)
-    //     if (sortName === "sortByName") {
-    //         dispatch(sortPokemonsByName(event));
-    //     } else {
-    //         dispatch(sortPokemonsByAttack(event.target.value));
-    //     }
-    // };
-
     const handleSortByName = (event) => {
         if(event==="asc"){
             setSortingButtonClass({ 
@@ -70,7 +59,6 @@ const HomePage = () => {
     };
 
     const handleFilter = (option) => {
-        // const filterOrigin = event.target.getAttribute("name");
         if (option === "api" || option === "database") {
             dispatch(filterPokemonsByOrigin(option));
         } else {

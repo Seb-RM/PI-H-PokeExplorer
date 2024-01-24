@@ -7,7 +7,6 @@ import "./Pagination.css";
 
 const Pagination = ({ pages, currentPage, setCurrentPage }) => {
 
-  // const [currentButton, setCurrentButton] = useState(1);
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
     const numberOfPages = [];
@@ -58,18 +57,12 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
         }
 
         setArrOfCurrButtons(tempNumberOfPages);
-        // setCurrentPage(currentButton);
       }
         timerId = setTimeout(updateState, 0);
 
     return () => clearTimeout(timerId);
 
     }, [currentPage, arrOfCurrButtons] );
-
-  // useEffect(() => {
-  //   setCurrentButton(currentPage);
-  //   console.log(currentPage)
-  // }, [currentPage]);
 
     return (
       <nav className="pagination-container">
