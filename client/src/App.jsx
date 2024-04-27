@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import HomePage from "./views/HomePage/HomePage.jsx";
-import LandingPage from "./views/LandingPage/LandingPage.jsx";
 import DetailPage from "./views/DetailPage/DetailPage.jsx"
+import LandingPage from "./views/LandingPage/LandingPage.jsx";
 import PokemonFormPage from "./views/PokemonFormPage/PokemonFormPage.jsx"
 
+import "./App.css";
 function App() {
   return (
       <Routes>
