@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const fetchPokemons = () => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:3001/pokemons");
+        const response = await axios.get(`http://localhost:3001/pokemons`);
         dispatch({
             type: actionTypes.FETCH_POKEMONS_SUCCESS,
             payload: response.data,
