@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const fetchPokemons = () => async (dispatch) => {
     try {
-        const response = await axios.get(`http://localhost:3001/pokemons`);
+        const response = await axios.get(`/pokemons`);
         dispatch({
             type: actionTypes.FETCH_POKEMONS_SUCCESS,
             payload: response.data,
@@ -20,7 +20,7 @@ export const fetchPokemons = () => async (dispatch) => {
 
 export const fetchPokemonDetails = ({id}) => async (dispatch) => {
     try {
-        const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
+        const response = await axios.get(`/pokemons/${id}`);
             dispatch({
                 type: actionTypes.FETCH_POKEMONDETAILS_SUCCESS,
                 payload: response.data,
@@ -35,7 +35,7 @@ export const fetchPokemonDetails = ({id}) => async (dispatch) => {
 
 export const fetchTypes = () => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:3001/types");
+        const response = await axios.get("/types");
         
         dispatch({
             type: actionTypes.FETCH_TYPES_SUCCESS,
@@ -51,7 +51,7 @@ export const fetchTypes = () => async (dispatch) => {
 
 export const createPokemon = (pokemonData) => async (dispatch) => {
     try {
-        const response = await axios.post("http://localhost:3001/pokemons",pokemonData);
+        const response = await axios.post("/pokemons",pokemonData);
         dispatch({
         type: actionTypes.CREATE_POKEMON_SUCCESS,
         payload: response.data,
@@ -96,7 +96,7 @@ export const filterPokemonsByType = (dataType) => {
 export const SearchPokemonsByName = (searchTerm) => async (dispatch) => {
     try {
         const response = await axios.get(
-        `http://localhost:3001/pokemons/search/name?name=${searchTerm}`
+        `/pokemons/search/name?name=${searchTerm}`
         );
         if(Array.isArray(response.data)){
             const filteredPokemons = response.data.filter(
@@ -163,7 +163,7 @@ export const deletePokemon = (id) => {
         dispatch(deletePokemonRequest());
         try {
             const response = await axios.delete(
-            `http://localhost:3001/pokemons/${id}`
+            `/pokemons/${id}`
             );
 
             if (response.data.success) {
