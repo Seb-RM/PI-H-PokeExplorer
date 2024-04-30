@@ -60,7 +60,7 @@ const PokemonDetail = (id) => {
                     <h4>
                         Vida: {pokemonDetails.vida}{" "}
                         <span className="detail-icon">
-                        <img src="../src/assets/icons/life-icon.png" />
+                        <img src="../../src/assets/icons/life-icon.png" />
                         </span>
                     </h4>
                     <h4>
