@@ -66,20 +66,20 @@ const PokemonDetail = (id) => {
                     <h4>
                         Ataque: {pokemonDetails.ataque}{" "}
                         <span className="detail-icon">
-                        <img src="../src/assets/icons/attack-icon.png" />
+                        <img src="/assets/icons/attack-icon.png" />
                         </span>
                     </h4>
                     <h4>
                         Defensa: {pokemonDetails.defensa}{" "}
                         <span className="detail-icon">
-                        <img src="../src/assets/icons/defense-icon.png" />
+                        <img src="/assets/icons/defense-icon.png" />
                         </span>
                     </h4>
                     <h4>
                         Velocidad: {pokemonDetails.velocidad}{" "}
                         <span className="detail-icon">
                         {" "}
-                        <img src="../src/assets/icons/speed-icon.png" />
+                        <img src="/assets/icons/speed-icon.png" />
                         </span>
                     </h4>
                     <h4>Altura: {formatedSize} m.</h4>
