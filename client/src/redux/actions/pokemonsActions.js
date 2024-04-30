@@ -20,7 +20,7 @@ export const fetchPokemons = () => async (dispatch) => {
 
 export const fetchPokemonDetails = ({id}) => async (dispatch) => {
     try {
-        const response = await axios.get(`/pokemons/${id}`);
+        const response = await axios.get(`pokemons/${id}`);
             dispatch({
                 type: actionTypes.FETCH_POKEMONDETAILS_SUCCESS,
                 payload: response.data,
