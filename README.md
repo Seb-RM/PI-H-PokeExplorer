@@ -55,3 +55,28 @@ Una vez completados los pasos anteriores, puedes ejecutar el proyecto localmente
 
 ¡Listo! Ahora puedes comenzar a utilizar la aplicación y explorar sus funcionalidades.
 
+## Uso
+
+Para empezar a utilizar la aplicación, simpemente sigue estos pasos:
+
+1. **Ingreso **: El ingreso a la aplicación es sencillo, simplemento se debe dar clic en el botón continuar.
+   
+    <img src="./screenshots/Captura-portada.PNG" alt="Formulario de Registro" width="800px">
+
+2. **Explora Personajes**: Una vez en la aplicación puedes explorar las tarjetas de Pokémon. 
+
+   <img src="./screenshots/Captura-home-ph.PNG" alt="Sección Home" width="800px">
+  
+   La barra de herramientas te permite filtrar los Pokémon por tipo, ordenarlos según tu preferencia,y buscarlos por nombre. Además del filtrado por origen, que hace referencia al hecho de 
+   que, además de visualizar los datos proporcionados por la API, puedes crear tu propio Pokémon para agregarlo a la lista. Solo tienes que usar el botón "Crea tu Pokémon!!" para acceder al 
+   formulario de creación.
+  
+   <img src="./screenshots/Captura-barra-filtrado.PNG" alt="Barra de búsqueda" width="800px">
+
+3. **Formulario de Creación**: Para crear un Pokémon solo tienes que seguir la indicaciones del formulario. No olvides de para la imagen debes ingresar una URL.
+
+      <img src="./screenshots/Captura-formulario.PNG" alt="Tarjeta de Personaje" width="800px">
+
+4. **Ver Detalles**: Una vez que hayas agregado tu Pokémon a la lista, puedes acceder a los detalles de sus datos haciendo clic en la tarjeta correspondiente. También puedes hacer lo mismo con el resto de las tarjetas.
+   
+   <img src="./screenshots/Captura-detaller-ph.PNG" alt="Sección Favoritos" width="800px">
