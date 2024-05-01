@@ -80,3 +80,7 @@ Para empezar a utilizar la aplicación, simpemente sigue estos pasos:
 4. **Ver Detalles**: Una vez que hayas agregado tu Pokémon a la lista, puedes acceder a los detalles de sus datos haciendo clic en la tarjeta correspondiente. También puedes hacer lo mismo con el resto de las tarjetas.
    
    <img src="./screenshots/Captura-detaller-ph.PNG" alt="Sección Favoritos" width="800px">
+
+   En el caso de un Pokémon creado por un usuario y guardado en la base de datos, al acceder a sus detalles también se verá un botón "Eliminar Pokémon", que  borrará sus datos de la misma.
+
+   <img src="./screenshots/Captura-detalle-db.PNG" alt="Sección Favoritos" width="800px">
