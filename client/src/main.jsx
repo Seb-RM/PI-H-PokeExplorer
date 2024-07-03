@@ -12,7 +12,7 @@ import store from "./redux/store/index.js"
 
 import './index.css'
 
-axios.defaults.baseURL = "https://pi-h-pokeexplorer-production.up.railway.app/";
+axios.defaults.baseURL = "https://pi-h-pokeexplorer.onrender.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
